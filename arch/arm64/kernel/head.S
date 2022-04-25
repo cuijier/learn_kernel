@@ -7,6 +7,12 @@
 string1:
 	.string "Booting at EL"
 
+/* 8字节对齐，否则会出错*/
+.align 3
+.globl sp_addr
+sp_addr:
+	.quad init_task_union + THREAD_START_SP
+
 .section ".text.boot"
 .globl _start
 _start:
@@ -61,6 +67,12 @@ el2_entry:
 	ldr x0, =HCR_HOST_NVHE_FLAGS
 	msr hcr_el2, x0
 
+	/* Generic timers. */
+	mrs     x0, cnthctl_el2
+	orr     x0, x0, #3                      // Enable EL1 physical timers
+	msr     cnthctl_el2, x0
+	msr     cntvoff_el2, xzr                // Clear virtual offset
+
 	ldr x0, =SCTLR_EL1_VALUE_MMU_DISABLED
 	msr sctlr_el1, x0
 
@@ -76,12 +88,20 @@ el1_entry:
 #ifdef CONFIG_DEBUG_ON_EARLY_ASM
 	bl print_el
 #endif
+	/* 设置异常向量表基地址到vbar寄存器 */
+	ldr     x5, =vectors
+	msr     vbar_el1, x5
+	isb
+
 	adr x0, bss_begin
 	adr x1, bss_end
 	sub x1, x1, x0
 	bl memzero
 
-	mov sp, #LOW_MEMORY
+	/* set sp to top of init_task_union */
+	ldr x8, =sp_addr
+	ldr x9, [x8]
+	mov sp, x9
 	bl kernel_main
 	b proc_hang // should never come here
 

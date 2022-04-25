@@ -36,6 +36,9 @@ core-y		+= arch/arm64/kernel/
 ifeq ($(CONFIG_ARCH_BCM2837),y)
 machine-$(CONFIG_ARCH_BCM2837)      := rpi
 incdir-$(CONFIG_ARCH_BCM2837)	:= rpi
+else
+$(info "--------" $(CONFIG_ARCH_BCM2837) )
+machine-y                       := rpi
 endif
 
 ifeq ($(incdir-y),)
@@ -43,12 +46,12 @@ incdir-y := $(machine-y)
 endif
 INCDIR   := mach-$(incdir-y)
 
-$(info $(INCDIR) )
 ifneq ($(machine-y),)
 MACHINE  := arch/arm64/mach-$(machine-y)/
 endif
 
 machdirs := $(patsubst %,arch/arm/mach-%/,$(machine-y))
+
 core-y  += $(MACHINE)
 
 # Default target when executing plain make

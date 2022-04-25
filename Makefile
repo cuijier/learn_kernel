@@ -72,7 +72,7 @@ CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 HOSTCC       = gcc
 HOSTCXX      = g++
 HOSTINCLUDE  = -Iinclude
-HOSTCFLAGS   = -Wall -Wstrict-prototypes -O2 -fomit-frame-pointer $(HOSTINCLUDE)
+HOSTCFLAGS   = -w -O2 -fomit-frame-pointer $(HOSTINCLUDE)
 HOSTCXXFLAGS = -O2
 
 # Decide whether to build built-in, modular, or both.
@@ -249,9 +249,10 @@ scripts: scripts_basic include/config/auto.conf
 
 # Objects we will link into kernel / subdirs we need to visit
 init-y		:= init/
-#libs-y		:= lib/
+libs-y		:= lib/
 #drivers-y	:= drivers/
-core-y		:=
+core-y		:= kernel/
+core-y          += mm/
 
 ifeq ($(dot-config),1)
 # Read in config
@@ -300,7 +301,7 @@ ifdef CONFIG_CC_GEN_DEBUG
 CFLAGS		+= -g
 endif
 
-NOSTDINC_FLAGS += -nostdinc -nostdlib
+NOSTDINC_FLAGS += -nostdlib -mgeneral-regs-only -ffreestanding -nostartfiles
 
 CHECKFLAGS     += $(NOSTDINC_FLAGS)
 
