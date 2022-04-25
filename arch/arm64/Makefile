@@ -33,9 +33,9 @@ export	TEXT_OFFSET GZFLAGS
 core-y		+= arch/arm64/kernel/
 
 ## add mach-rpi folder
-ifeq ($(CONFIG_ARCH_BCM2835),y)
-machine-$(CONFIG_ARCH_BCM2835)      := rpi
-incdir-$(CONFIG_ARCH_BCM2835)	:= rpi
+ifeq ($(CONFIG_ARCH_BCM2837),y)
+machine-$(CONFIG_ARCH_BCM2837)      := rpi
+incdir-$(CONFIG_ARCH_BCM2837)	:= rpi
 endif
 
 ifeq ($(incdir-y),)
@@ -43,12 +43,12 @@ incdir-y := $(machine-y)
 endif
 INCDIR   := mach-$(incdir-y)
 
+$(info $(INCDIR) )
 ifneq ($(machine-y),)
 MACHINE  := arch/arm64/mach-$(machine-y)/
 endif
 
 machdirs := $(patsubst %,arch/arm/mach-%/,$(machine-y))
-
 core-y  += $(MACHINE)
 
 # Default target when executing plain make
