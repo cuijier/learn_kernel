@@ -8,12 +8,12 @@ config 64BIT
 
 choice
 	prompt"Platform selection"
-	default ARCH_BCM2835
+	default ARCH_BCM2837
 	help
 	  Platform selection.
 
-config ARCH_BCM2835
-	bool "Broadcom BCM2835 family"
+config ARCH_BCM2837
+	bool "Broadcom BCM2837 family"
 	help
 	This enables support for the Broadcom BCM2837 and BCM2711 SoC.
 	These SoCs are used in the Raspberry Pi 3 and 4 devices.
@@ -31,17 +31,17 @@ choice
 
 config BOARD_PI3B
 	bool "Raspberry 3B"
-	depends on ARCH_BCM2835
+	depends on ARCH_BCM2837
 
 config BOARD_PI4B
 	bool "Raspberry 4B"
-	depends on ARCH_BCM2835
+	depends on ARCH_BCM2837
 endchoice
 
 choice
 	prompt "Uart for Pi"
 	default PI_PL_UART
-	depends on ARCH_BCM2835
+	depends on ARCH_BCM2837
 
 config PI_MINI_UART
 	bool "mini_uart"
