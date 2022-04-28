@@ -1,4 +1,5 @@
 #include "mm.h"
+#include "sysregs.h"
 
 .section ".text.boot"
 
@@ -13,6 +14,33 @@ proc_hang:
 	b 	proc_hang
 
 master:
+        mrs     x2, CurrentEL
+        lsr     x3, x2, #2
+        cmp     x3, #2
+	b.eq    el2_entry
+        b       el1_entry
+
+
+el2_entry:
+	ldr x0, =SCTLR_EL2_VALUE_MMU_DISABLED
+	msr sctlr_el2, x0
+
+	/* The Execution state for EL1 is AArch64 */
+	ldr x0, =HCR_HOST_NVHE_FLAGS
+	msr hcr_el2, x0
+
+	ldr x0, =SCTLR_EL1_VALUE_MMU_DISABLED
+	msr sctlr_el1, x0
+
+	ldr x0, =SPSR_EL1
+	msr spsr_el2, x0
+
+	adr x0, el1_entry
+	msr elr_el2, x0
+
+	eret
+
+el1_entry:
 	adr	x0, bss_begin
 	adr	x1, bss_end
 	sub	x1, x1, x0

@@ -1,0 +1,180 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+$(BUILD_DIR)/%_c.o	Makefile	/^$(BUILD_DIR)\/%_c.o: $(SRC_DIR)\/%.c$/;"	t
+$(BUILD_DIR)/%_s.o	Makefile	/^$(BUILD_DIR)\/%_s.o: $(SRC_DIR)\/%.S$/;"	t
+.bss	src/linker.ld	/^	.bss : { *(.bss*) } $/;"	S
+.data	src/linker.ld	/^	.data : { *(.data) }$/;"	S
+.rodata	src/linker.ld	/^	.rodata : { *(.rodata) }$/;"	S
+.text	src/linker.ld	/^	.text : { *(.text) }$/;"	S
+.text.boot	src/linker.ld	/^	.text.boot : { *(.text.boot) }$/;"	S
+ARMGNU	Makefile	/^ARMGNU ?= aarch64-linux-gnu$/;"	m
+ASMOPS	Makefile	/^ASMOPS = -Iinclude $/;"	m
+ASM_FILES	Makefile	/^ASM_FILES = $(wildcard $(SRC_DIR)\/*.S)$/;"	m
+BUILD_DIR	Makefile	/^BUILD_DIR = build$/;"	m
+COPS	Makefile	/^COPS = -Wall -nostdlib -nostdinc -Iinclude$/;"	m
+C_FILES	Makefile	/^C_FILES = $(wildcard $(SRC_DIR)\/*.c)$/;"	m
+DEP_FILES	Makefile	/^DEP_FILES = $(OBJ_FILES:%.o=%.d)$/;"	m
+ENDIAN_CLEAR_EL1	include/sysregs.h	/^#define ENDIAN_CLEAR_EL1	/;"	d
+ENDIAN_CLEAR_EL2	include/sysregs.h	/^#define ENDIAN_CLEAR_EL2	/;"	d
+ENDIAN_SET_EL1	include/sysregs.h	/^#define ENDIAN_SET_EL1	/;"	d
+ENDIAN_SET_EL2	include/sysregs.h	/^#define ENDIAN_SET_EL2	/;"	d
+GPCLR0	include/peripherals/gpio.h	/^#define GPCLR0 /;"	d
+GPFSEL1	include/peripherals/gpio.h	/^#define GPFSEL1 /;"	d
+GPPUD	include/peripherals/gpio.h	/^#define GPPUD /;"	d
+GPPUDCLK0	include/peripherals/gpio.h	/^#define GPPUDCLK0 /;"	d
+GPSET0	include/peripherals/gpio.h	/^#define GPSET0 /;"	d
+HCR_AMO	include/sysregs.h	/^#define HCR_AMO	/;"	d
+HCR_API	include/sysregs.h	/^#define HCR_API	/;"	d
+HCR_APK	include/sysregs.h	/^#define HCR_APK	/;"	d
+HCR_BSU	include/sysregs.h	/^#define HCR_BSU	/;"	d
+HCR_BSU_IS	include/sysregs.h	/^#define HCR_BSU_IS	/;"	d
+HCR_CD	include/sysregs.h	/^#define HCR_CD	/;"	d
+HCR_DC	include/sysregs.h	/^#define HCR_DC	/;"	d
+HCR_E2H	include/sysregs.h	/^#define HCR_E2H	/;"	d
+HCR_FB	include/sysregs.h	/^#define HCR_FB	/;"	d
+HCR_FMO	include/sysregs.h	/^#define HCR_FMO	/;"	d
+HCR_FWB	include/sysregs.h	/^#define HCR_FWB	/;"	d
+HCR_GUEST_FLAGS	include/sysregs.h	/^#define HCR_GUEST_FLAGS /;"	d
+HCR_HCD	include/sysregs.h	/^#define HCR_HCD	/;"	d
+HCR_HOST_NVHE_FLAGS	include/sysregs.h	/^#define HCR_HOST_NVHE_FLAGS /;"	d
+HCR_HOST_VHE_FLAGS	include/sysregs.h	/^#define HCR_HOST_VHE_FLAGS /;"	d
+HCR_ID	include/sysregs.h	/^#define HCR_ID	/;"	d
+HCR_IMO	include/sysregs.h	/^#define HCR_IMO	/;"	d
+HCR_PTW	include/sysregs.h	/^#define HCR_PTW	/;"	d
+HCR_RW	include/sysregs.h	/^#define HCR_RW	/;"	d
+HCR_RW_SHIFT	include/sysregs.h	/^#define HCR_RW_SHIFT	/;"	d
+HCR_SWIO	include/sysregs.h	/^#define HCR_SWIO	/;"	d
+HCR_TAC	include/sysregs.h	/^#define HCR_TAC	/;"	d
+HCR_TDZ	include/sysregs.h	/^#define HCR_TDZ	/;"	d
+HCR_TEA	include/sysregs.h	/^#define HCR_TEA	/;"	d
+HCR_TERR	include/sysregs.h	/^#define HCR_TERR	/;"	d
+HCR_TGE	include/sysregs.h	/^#define HCR_TGE	/;"	d
+HCR_TID0	include/sysregs.h	/^#define HCR_TID0	/;"	d
+HCR_TID1	include/sysregs.h	/^#define HCR_TID1	/;"	d
+HCR_TID2	include/sysregs.h	/^#define HCR_TID2	/;"	d
+HCR_TID3	include/sysregs.h	/^#define HCR_TID3	/;"	d
+HCR_TIDCP	include/sysregs.h	/^#define HCR_TIDCP	/;"	d
+HCR_TLOR	include/sysregs.h	/^#define HCR_TLOR	/;"	d
+HCR_TPC	include/sysregs.h	/^#define HCR_TPC	/;"	d
+HCR_TPU	include/sysregs.h	/^#define HCR_TPU	/;"	d
+HCR_TRVM	include/sysregs.h	/^#define HCR_TRVM	/;"	d
+HCR_TSC	include/sysregs.h	/^#define HCR_TSC	/;"	d
+HCR_TSW	include/sysregs.h	/^#define HCR_TSW	/;"	d
+HCR_TTLB	include/sysregs.h	/^#define HCR_TTLB	/;"	d
+HCR_TVM	include/sysregs.h	/^#define HCR_TVM	/;"	d
+HCR_TWE	include/sysregs.h	/^#define HCR_TWE	/;"	d
+HCR_TWI	include/sysregs.h	/^#define HCR_TWI	/;"	d
+HCR_VF	include/sysregs.h	/^#define HCR_VF	/;"	d
+HCR_VI	include/sysregs.h	/^#define HCR_VI	/;"	d
+HCR_VIRT_EXCP_MASK	include/sysregs.h	/^#define HCR_VIRT_EXCP_MASK /;"	d
+HCR_VM	include/sysregs.h	/^#define HCR_VM	/;"	d
+HCR_VSE	include/sysregs.h	/^#define HCR_VSE	/;"	d
+LOW_MEMORY	include/mm.h	/^#define LOW_MEMORY /;"	d
+OBJ_FILES	Makefile	/^OBJ_FILES = $(C_FILES:$(SRC_DIR)\/%.c=$(BUILD_DIR)\/%_c.o)$/;"	m
+PAGE_SHIFT	include/mm.h	/^#define PAGE_SHIFT /;"	d
+PAGE_SIZE	include/mm.h	/^#define PAGE_SIZE /;"	d
+PBASE	include/peripherals/base.h	/^#define PBASE /;"	d
+SCR_NS	include/sysregs.h	/^#define SCR_NS /;"	d
+SCR_RESERVED	include/sysregs.h	/^#define SCR_RESERVED /;"	d
+SCR_RW	include/sysregs.h	/^#define SCR_RW /;"	d
+SCR_VALUE	include/sysregs.h	/^#define SCR_VALUE /;"	d
+SCTLR_EL1_CLEAR	include/sysregs.h	/^#define SCTLR_EL1_CLEAR	/;"	d
+SCTLR_EL1_CP15BEN	include/sysregs.h	/^#define SCTLR_EL1_CP15BEN	/;"	d
+SCTLR_EL1_DZE	include/sysregs.h	/^#define SCTLR_EL1_DZE	/;"	d
+SCTLR_EL1_E0E	include/sysregs.h	/^#define SCTLR_EL1_E0E	/;"	d
+SCTLR_EL1_ITD	include/sysregs.h	/^#define SCTLR_EL1_ITD	/;"	d
+SCTLR_EL1_NTWE	include/sysregs.h	/^#define SCTLR_EL1_NTWE	/;"	d
+SCTLR_EL1_NTWI	include/sysregs.h	/^#define SCTLR_EL1_NTWI	/;"	d
+SCTLR_EL1_RES0	include/sysregs.h	/^#define SCTLR_EL1_RES0 /;"	d
+SCTLR_EL1_RES1	include/sysregs.h	/^#define SCTLR_EL1_RES1 /;"	d
+SCTLR_EL1_SA0	include/sysregs.h	/^#define SCTLR_EL1_SA0	/;"	d
+SCTLR_EL1_SED	include/sysregs.h	/^#define SCTLR_EL1_SED	/;"	d
+SCTLR_EL1_SET	include/sysregs.h	/^#define SCTLR_EL1_SET	/;"	d
+SCTLR_EL1_SPAN	include/sysregs.h	/^#define SCTLR_EL1_SPAN	/;"	d
+SCTLR_EL1_UCI	include/sysregs.h	/^#define SCTLR_EL1_UCI	/;"	d
+SCTLR_EL1_UCT	include/sysregs.h	/^#define SCTLR_EL1_UCT	/;"	d
+SCTLR_EL1_UMA	include/sysregs.h	/^#define SCTLR_EL1_UMA	/;"	d
+SCTLR_EL1_VALUE_MMU_DISABLED	include/sysregs.h	/^#define SCTLR_EL1_VALUE_MMU_DISABLED /;"	d
+SCTLR_EL2_CLEAR	include/sysregs.h	/^#define SCTLR_EL2_CLEAR	/;"	d
+SCTLR_EL2_RES0	include/sysregs.h	/^#define SCTLR_EL2_RES0 /;"	d
+SCTLR_EL2_RES1	include/sysregs.h	/^#define SCTLR_EL2_RES1 /;"	d
+SCTLR_EL2_SET	include/sysregs.h	/^#define SCTLR_EL2_SET	/;"	d
+SCTLR_EL2_VALUE_MMU_DISABLED	include/sysregs.h	/^#define SCTLR_EL2_VALUE_MMU_DISABLED /;"	d
+SCTLR_ELx_A	include/sysregs.h	/^#define SCTLR_ELx_A	/;"	d
+SCTLR_ELx_C	include/sysregs.h	/^#define SCTLR_ELx_C	/;"	d
+SCTLR_ELx_DSSBS	include/sysregs.h	/^#define SCTLR_ELx_DSSBS	/;"	d
+SCTLR_ELx_EE	include/sysregs.h	/^#define SCTLR_ELx_EE /;"	d
+SCTLR_ELx_ENDA	include/sysregs.h	/^#define SCTLR_ELx_ENDA	/;"	d
+SCTLR_ELx_ENDB	include/sysregs.h	/^#define SCTLR_ELx_ENDB	/;"	d
+SCTLR_ELx_ENIA	include/sysregs.h	/^#define SCTLR_ELx_ENIA	/;"	d
+SCTLR_ELx_ENIB	include/sysregs.h	/^#define SCTLR_ELx_ENIB	/;"	d
+SCTLR_ELx_FLAGS	include/sysregs.h	/^#define SCTLR_ELx_FLAGS	/;"	d
+SCTLR_ELx_I	include/sysregs.h	/^#define SCTLR_ELx_I	/;"	d
+SCTLR_ELx_IESB	include/sysregs.h	/^#define SCTLR_ELx_IESB	/;"	d
+SCTLR_ELx_M	include/sysregs.h	/^#define SCTLR_ELx_M	/;"	d
+SCTLR_ELx_SA	include/sysregs.h	/^#define SCTLR_ELx_SA	/;"	d
+SCTLR_ELx_WXN	include/sysregs.h	/^#define SCTLR_ELx_WXN	/;"	d
+SECTION_SHIFT	include/mm.h	/^#define SECTION_SHIFT /;"	d
+SECTION_SIZE	include/mm.h	/^#define SECTION_SIZE /;"	d
+SPSR_EL1	include/sysregs.h	/^#define SPSR_EL1 /;"	d
+SPSR_EL1h	include/sysregs.h	/^#define SPSR_EL1h /;"	d
+SPSR_EL2	include/sysregs.h	/^#define SPSR_EL2 /;"	d
+SPSR_EL2h	include/sysregs.h	/^#define SPSR_EL2h /;"	d
+SPSR_MASK_ALL	include/sysregs.h	/^#define SPSR_MASK_ALL /;"	d
+SRC_DIR	Makefile	/^SRC_DIR = src$/;"	m
+TABLE_SHIFT	include/mm.h	/^#define TABLE_SHIFT /;"	d
+U_BASE	include/peripherals/pl_uart.h	/^#define U_BASE /;"	d
+U_CR_REG	include/peripherals/pl_uart.h	/^#define U_CR_REG /;"	d
+U_DATA_REG	include/peripherals/pl_uart.h	/^#define U_DATA_REG /;"	d
+U_FBRD_REG	include/peripherals/pl_uart.h	/^#define U_FBRD_REG /;"	d
+U_FR_REG	include/peripherals/pl_uart.h	/^#define U_FR_REG /;"	d
+U_IBRD_REG	include/peripherals/pl_uart.h	/^#define U_IBRD_REG /;"	d
+U_IMSC_REG	include/peripherals/pl_uart.h	/^#define U_IMSC_REG /;"	d
+U_LCRH_REG	include/peripherals/pl_uart.h	/^#define U_LCRH_REG /;"	d
+_LINUX_TYPES_H	include/types.h	/^#define _LINUX_TYPES_H$/;"	d
+_MM_H	include/mm.h	/^#define	_MM_H$/;"	d
+_P_BASE_H	include/peripherals/base.h	/^#define	_P_BASE_H$/;"	d
+_P_GPIO_H	include/peripherals/gpio.h	/^#define	_P_GPIO_H$/;"	d
+_P_IO_H	include/io.h	/^#define _P_IO_H$/;"	d
+_P_UART_H	include/peripherals/pl_uart.h	/^#define	_P_UART_H$/;"	d
+__arch_getl	include/io.h	/^#define __arch_getl(/;"	d
+__arch_putl	include/io.h	/^#define __arch_putl(/;"	d
+__iormb	include/io.h	/^#define __iormb(/;"	d
+__iowmb	include/io.h	/^#define __iowmb(/;"	d
+_start	src/head.S	/^_start:$/;"	l
+all	Makefile	/^all : rpios.bin$/;"	t
+bss_begin	src/linker.ld	/^	bss_begin = .;$/;"	s
+bss_end	src/linker.ld	/^	bss_end = .;$/;"	s
+clean	Makefile	/^clean :$/;"	t
+debug	Makefile	/^debug : $/;"	t
+delay	include/io.h	/^static inline void delay(unsigned int n)$/;"	f	typeref:typename:void
+dmb	include/io.h	/^#define dmb(/;"	d
+el1_entry	src/head.S	/^el1_entry:$/;"	l
+el2_entry	src/head.S	/^el2_entry:$/;"	l
+kernel_main	src/main.c	/^void kernel_main(void)$/;"	f	typeref:typename:void
+master	src/head.S	/^master:$/;"	l
+memzero	src/mm.S	/^memzero:$/;"	l
+proc_hang	src/head.S	/^proc_hang: $/;"	l
+read_sysreg	include/sysregs.h	/^#define read_sysreg(/;"	d
+readl	include/io.h	/^#define readl(/;"	d
+rpios.bin	Makefile	/^rpios.bin: $(SRC_DIR)\/linker.ld $(OBJ_FILES)$/;"	t
+run	Makefile	/^run :$/;"	t
+s16	include/types.h	/^typedef short s16;$/;"	t	typeref:typename:short
+s32	include/types.h	/^typedef int s32;$/;"	t	typeref:typename:int
+s64	include/types.h	/^typedef long long s64;$/;"	t	typeref:typename:long long
+s8	include/types.h	/^typedef char s8;$/;"	t	typeref:typename:char
+u16	include/types.h	/^typedef unsigned short u16;$/;"	t	typeref:typename:unsigned short
+u32	include/types.h	/^typedef unsigned int u32;$/;"	t	typeref:typename:unsigned int
+u64	include/types.h	/^typedef unsigned long long u64;$/;"	t	typeref:typename:unsigned long long
+u8	include/types.h	/^typedef unsigned char u8;$/;"	t	typeref:typename:unsigned char
+uart_init	src/pl_uart.c	/^void uart_init(void)$/;"	f	typeref:typename:void
+uart_recv	src/pl_uart.c	/^char uart_recv(void)$/;"	f	typeref:typename:char
+uart_send	src/pl_uart.c	/^void uart_send(char c)$/;"	f	typeref:typename:void
+uart_send_string	src/pl_uart.c	/^void uart_send_string(char *str)$/;"	f	typeref:typename:void
+write_sysreg	include/sysregs.h	/^#define write_sysreg(/;"	d
+writel	include/io.h	/^#define writel(/;"	d
