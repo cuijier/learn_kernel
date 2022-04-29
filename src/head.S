@@ -41,12 +41,14 @@ el2_entry:
 	eret
 
 el1_entry:
+	adr     x2, vectors
+	msr     vbar_el1, x2
+	isb
 	adr	x0, bss_begin
 	adr	x1, bss_end
 	sub	x1, x1, x0
 	bl 	memzero
-        adr     x2, vectors
-        msr     vbar_el1, x2
+
 	mov	sp, #LOW_MEMORY 
 	bl	kernel_main
 	b 	proc_hang		// should never come here

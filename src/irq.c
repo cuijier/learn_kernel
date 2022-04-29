@@ -6,19 +6,12 @@ void show_invalid_entry_message(int type, unsigned long esr, unsigned long addre
 	//printf("%s, ESR: %x, address: %x\r\n", entry_error_messages[type], esr, address);
 }
 
-
-void enable_interrupt_controller()
-{
-	writel(ENABLE_IRQS_1, SYSTEM_TIMER_IRQ_1);
-}
-
-
 void handle_irq(void)
 {
-    unsigned int irq = readl(IRQ_PENDING_1);
+    unsigned int irq = readl(0x40000060);
     switch(irq)
     {
-        case SYSTEM_TIMER_IRQ_1:
+        case 2:
              handle_timer_irq();
              break;
     }
