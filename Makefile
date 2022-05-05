@@ -1,7 +1,7 @@
 ARMGNU ?= aarch64-linux-gnu
 
-COPS = -Wall -nostdlib -nostdinc -Iinclude  -g
-ASMOPS = -Iinclude  -D__ASSEMBLY__   -g
+COPS = -Wall -nostdlib -nostdinc -Iinclude
+ASMOPS = -Iinclude  -D__ASSEMBLY__
 
 BUILD_DIR = build
 SRC_DIR = src
