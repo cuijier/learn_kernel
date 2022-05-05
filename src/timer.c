@@ -1,5 +1,5 @@
 #include "io.h"
-//#include "printf.h"
+#include "printf.h"
 #include "timer.h"
 #include "peripherals/timer.h"
 #include "peripherals/irq.h"
@@ -51,6 +51,6 @@ void timer_init(void)
 void handle_timer_irq(void)
 {
 	generic_timer_reset(val);
-	uart_send_string("Core0 Timer interrupt received\r\n");
+	printf("Core0 Timer interrupt received\n");
 }
 

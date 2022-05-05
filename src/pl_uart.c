@@ -76,3 +76,7 @@ void uart_init(void)
 	writel(1 | (1<<8) | (1<<9), U_CR_REG);
 }
 
+void _putchar(char character)
+{
+    uart_send(character);
+}

@@ -12,11 +12,16 @@ $(BUILD_DIR)/%_s.o	Makefile	/^$(BUILD_DIR)\/%_s.o: $(SRC_DIR)\/%.S$/;"	t
 .rodata	src/linker.ld	/^	.rodata : { *(.rodata) }$/;"	S
 .text	src/linker.ld	/^	.text : { *(.text) }$/;"	S
 .text.boot	src/linker.ld	/^	.text.boot : { *(.text.boot) }$/;"	S
+1. 常见汇编指令	doc/1.1.md	/^##### 1. 常见汇编指令$/;"	T
+2. ARM寄存器	doc/1.1.md	/^##### 2. ARM寄存器$/;"	T
+3. 运行等级介绍	doc/1.1.md	/^##### 3. 运行等级介绍$/;"	T
 ARMGNU	Makefile	/^ARMGNU ?= aarch64-linux-gnu$/;"	m
 ASMOPS	Makefile	/^ASMOPS = -Iinclude  -D__ASSEMBLY__$/;"	m
 ASM_FILES	Makefile	/^ASM_FILES = $(wildcard $(SRC_DIR)\/*.S)$/;"	m
 BUILD_DIR	Makefile	/^BUILD_DIR = build$/;"	m
-COPS	Makefile	/^COPS = -Wall -nostdlib -nostdinc -Iinclude$/;"	m
+CONFIG_HZ	include/timer.h	/^#define CONFIG_HZ /;"	d
+COPS	Makefile	/^COPS = -Wall -nostdlib -Iinclude$/;"	m
+CORE0_TIMER_CTL	include/peripherals/irq.h	/^#define CORE0_TIMER_CTL /;"	d
 C_FILES	Makefile	/^C_FILES = $(wildcard $(SRC_DIR)\/*.c)$/;"	m
 DEP_FILES	Makefile	/^DEP_FILES = $(OBJ_FILES:%.o=%.d)$/;"	m
 DISABLE_BASIC_IRQS	include/peripherals/irq.h	/^#define DISABLE_BASIC_IRQS	/;"	d
@@ -89,6 +94,8 @@ HCR_VI	include/sysregs.h	/^#define HCR_VI	/;"	d
 HCR_VIRT_EXCP_MASK	include/sysregs.h	/^#define HCR_VIRT_EXCP_MASK /;"	d
 HCR_VM	include/sysregs.h	/^#define HCR_VM	/;"	d
 HCR_VSE	include/sysregs.h	/^#define HCR_VSE	/;"	d
+HZ	include/timer.h	/^#define HZ /;"	d
+HZ	src/timer.c	/^#define  HZ /;"	d	file:
 IRQ_BASIC_PENDING	include/peripherals/irq.h	/^#define IRQ_BASIC_PENDING	/;"	d
 IRQ_INVALID_EL0_32	include/vector_entry.h	/^#define IRQ_INVALID_EL0_32	/;"	d
 IRQ_INVALID_EL0_64	include/vector_entry.h	/^#define IRQ_INVALID_EL0_64	/;"	d
@@ -96,7 +103,12 @@ IRQ_INVALID_EL1h	include/vector_entry.h	/^#define IRQ_INVALID_EL1h	/;"	d
 IRQ_INVALID_EL1t	include/vector_entry.h	/^#define IRQ_INVALID_EL1t	/;"	d
 IRQ_PENDING_1	include/peripherals/irq.h	/^#define IRQ_PENDING_1	/;"	d
 IRQ_PENDING_2	include/peripherals/irq.h	/^#define IRQ_PENDING_2	/;"	d
+LOCAL_PERIPHERALS_BASE	include/peripherals/base.h	/^#define LOCAL_PERIPHERALS_BASE /;"	d
 LOW_MEMORY	include/mm.h	/^#define LOW_MEMORY /;"	d
+MSEC_PER_SEC	include/timer.h	/^#define MSEC_PER_SEC	/;"	d
+NSEC_PER_MSEC	include/timer.h	/^#define NSEC_PER_MSEC	/;"	d
+NSEC_PER_SEC	include/timer.h	/^#define NSEC_PER_SEC	/;"	d
+NSEC_PER_USEC	include/timer.h	/^#define NSEC_PER_USEC	/;"	d
 OBJ_FILES	Makefile	/^OBJ_FILES = $(C_FILES:$(SRC_DIR)\/%.c=$(BUILD_DIR)\/%_c.o)$/;"	m
 PAGE_SHIFT	include/mm.h	/^#define PAGE_SHIFT /;"	d
 PAGE_SIZE	include/mm.h	/^#define PAGE_SIZE /;"	d
@@ -172,6 +184,8 @@ TIMER_CS_M2	include/peripherals/timer.h	/^#define TIMER_CS_M2	/;"	d
 TIMER_CS_M3	include/peripherals/timer.h	/^#define TIMER_CS_M3	/;"	d
 UL	include/types.h	/^#define UL(/;"	d
 ULL	include/types.h	/^#define ULL(/;"	d
+USEC_PER_MSEC	include/timer.h	/^#define USEC_PER_MSEC	/;"	d
+USEC_PER_SEC	include/timer.h	/^#define USEC_PER_SEC	/;"	d
 U_BASE	include/peripherals/pl_uart.h	/^#define U_BASE /;"	d
 U_CR_REG	include/peripherals/pl_uart.h	/^#define U_CR_REG /;"	d
 U_DATA_REG	include/peripherals/pl_uart.h	/^#define U_DATA_REG /;"	d
@@ -197,16 +211,18 @@ _TIMER_H	include/timer.h	/^#define	_TIMER_H$/;"	d
 _UL	include/types.h	/^#define _UL(/;"	d
 _ULL	include/types.h	/^#define _ULL(/;"	d
 __AC	include/types.h	/^#define __AC(/;"	d
+__TFP_PRINTF__	include/printf.h	/^#define __TFP_PRINTF__$/;"	d
 __arch_getl	include/io.h	/^#define __arch_getl(/;"	d
 __arch_putl	include/io.h	/^#define __arch_putl(/;"	d
 __iormb	include/io.h	/^#define __iormb(/;"	d
 __iowmb	include/io.h	/^#define __iowmb(/;"	d
 _start	src/head.S	/^_start:$/;"	l
+a2d	src/printf.c	/^static int a2d(char ch)$/;"	f	typeref:typename:int	file:
+a2i	src/printf.c	/^static char a2i(char ch, char** src,int base,int* nump)$/;"	f	typeref:typename:char	file:
 all	Makefile	/^all : rpios.bin$/;"	t
 bss_begin	src/linker.ld	/^	bss_begin = .;$/;"	s
 bss_end	src/linker.ld	/^	bss_end = .;$/;"	s
 clean	Makefile	/^clean :$/;"	t
-curVal	src/timer.c	/^unsigned int curVal = 0;$/;"	v	typeref:typename:unsigned int
 debug	Makefile	/^debug : $/;"	t
 delay	include/io.h	/^static inline void delay(unsigned int n)$/;"	f	typeref:typename:void
 disable_irq	src/irq.S	/^disable_irq:$/;"	l
@@ -214,8 +230,8 @@ dmb	include/io.h	/^#define dmb(/;"	d
 el1_entry	src/head.S	/^el1_entry:$/;"	l
 el1_irq	src/entry.S	/^el1_irq:$/;"	l
 el2_entry	src/head.S	/^el2_entry:$/;"	l
-enable_interrupt_controller	src/irq.c	/^void enable_interrupt_controller()$/;"	f	typeref:typename:void
 enable_irq	src/irq.S	/^enable_irq:$/;"	l
+enable_timer_interrupt	src/timer.c	/^static void enable_timer_interrupt(void)$/;"	f	typeref:typename:void	file:
 err_hang	src/entry.S	/^err_hang: b err_hang$/;"	l
 error_invalid_el0_32	src/entry.S	/^error_invalid_el0_32:$/;"	l
 error_invalid_el0_64	src/entry.S	/^error_invalid_el0_64:$/;"	l
@@ -225,19 +241,28 @@ fiq_invalid_el0_32	src/entry.S	/^fiq_invalid_el0_32:$/;"	l
 fiq_invalid_el0_64	src/entry.S	/^fiq_invalid_el0_64:$/;"	l
 fiq_invalid_el1h	src/entry.S	/^fiq_invalid_el1h:$/;"	l
 fiq_invalid_el1t	src/entry.S	/^fiq_invalid_el1t:$/;"	l
+generic_timer_init	src/timer.c	/^static int generic_timer_init(void)$/;"	f	typeref:typename:int	file:
+generic_timer_reset	src/timer.c	/^static int generic_timer_reset(unsigned int val)$/;"	f	typeref:typename:int	file:
 handle_invalid_entry	src/entry.S	/^	.macro handle_invalid_entry type$/;"	m
 handle_irq	src/irq.c	/^void handle_irq(void)$/;"	f	typeref:typename:void
-handle_timer_irq	src/timer.c	/^void handle_timer_irq( void ) $/;"	f	typeref:typename:void
-interval	src/timer.c	/^const unsigned int interval = 200000;$/;"	v	typeref:typename:const unsigned int
+handle_timer_irq	src/timer.c	/^void handle_timer_irq(void)$/;"	f	typeref:typename:void
+i2a	src/printf.c	/^static void i2a (int num, char * bf)$/;"	f	typeref:typename:void	file:
+init_printf	src/printf.c	/^void init_printf(void* putp,void (*putf) (void*,char))$/;"	f	typeref:typename:void
 irq_invalid_el0_32	src/entry.S	/^irq_invalid_el0_32:$/;"	l
 irq_invalid_el0_64	src/entry.S	/^irq_invalid_el0_64:$/;"	l
 irq_invalid_el1t	src/entry.S	/^irq_invalid_el1t:$/;"	l
 kernel_entry	src/entry.S	/^	.macro	kernel_entry$/;"	m
 kernel_exit	src/entry.S	/^	.macro	kernel_exit$/;"	m
 kernel_main	src/main.c	/^void kernel_main(void)$/;"	f	typeref:typename:void
+li2a	src/printf.c	/^static void li2a (long num, char * bf)$/;"	f	typeref:typename:void	file:
 master	src/head.S	/^master:$/;"	l
 memzero	src/mm.S	/^memzero:$/;"	l
+printf	include/printf.h	/^#define printf /;"	d
 proc_hang	src/head.S	/^proc_hang: $/;"	l
+putc_t	src/pl_uart.c	/^void putc_t ( void* p, char c)$/;"	f	typeref:typename:void
+putcf	src/printf.c	/^typedef void (*putcf) (void*,char);$/;"	t	typeref:typename:void (*)(void *,char)	file:
+putchw	src/printf.c	/^static void putchw(void* putp,putcf putf,int n, char z, char* bf)$/;"	f	typeref:typename:void	file:
+putcp	src/printf.c	/^static void putcp(void* p,char c)$/;"	f	typeref:typename:void	file:
 read_sysreg	include/sysregs.h	/^#define read_sysreg(/;"	d
 readl	include/io.h	/^#define readl(/;"	d
 rpios.bin	Makefile	/^rpios.bin: $(SRC_DIR)\/linker.ld $(OBJ_FILES)$/;"	t
@@ -247,11 +272,17 @@ s32	include/types.h	/^typedef int s32;$/;"	t	typeref:typename:int
 s64	include/types.h	/^typedef long long s64;$/;"	t	typeref:typename:long long
 s8	include/types.h	/^typedef char s8;$/;"	t	typeref:typename:char
 show_invalid_entry_message	src/irq.c	/^void show_invalid_entry_message(int type, unsigned long esr, unsigned long address)$/;"	f	typeref:typename:void
+sprintf	include/printf.h	/^#define sprintf /;"	d
+stdout_putf	src/printf.c	/^static putcf stdout_putf;$/;"	v	typeref:typename:putcf	file:
+stdout_putp	src/printf.c	/^static void* stdout_putp;$/;"	v	typeref:typename:void *	file:
 sync_invalid_el0_32	src/entry.S	/^sync_invalid_el0_32:$/;"	l
 sync_invalid_el0_64	src/entry.S	/^sync_invalid_el0_64:$/;"	l
 sync_invalid_el1h	src/entry.S	/^sync_invalid_el1h:$/;"	l
 sync_invalid_el1t	src/entry.S	/^sync_invalid_el1t:$/;"	l
-timer_init	src/timer.c	/^void timer_init ( void )$/;"	f	typeref:typename:void
+tfp_format	src/printf.c	/^void tfp_format(void* putp,putcf putf,char *fmt, va_list va)$/;"	f	typeref:typename:void
+tfp_printf	src/printf.c	/^void tfp_printf(char *fmt, ...)$/;"	f	typeref:typename:void
+tfp_sprintf	src/printf.c	/^void tfp_sprintf(char* s,char *fmt, ...)$/;"	f	typeref:typename:void
+timer_init	src/timer.c	/^void timer_init(void)$/;"	f	typeref:typename:void
 u16	include/types.h	/^typedef unsigned short u16;$/;"	t	typeref:typename:unsigned short
 u32	include/types.h	/^typedef unsigned int u32;$/;"	t	typeref:typename:unsigned int
 u64	include/types.h	/^typedef unsigned long long u64;$/;"	t	typeref:typename:unsigned long long
@@ -260,7 +291,13 @@ uart_init	src/pl_uart.c	/^void uart_init(void)$/;"	f	typeref:typename:void
 uart_recv	src/pl_uart.c	/^char uart_recv(void)$/;"	f	typeref:typename:char
 uart_send	src/pl_uart.c	/^void uart_send(char c)$/;"	f	typeref:typename:void
 uart_send_string	src/pl_uart.c	/^void uart_send_string(char *str)$/;"	f	typeref:typename:void
+ui2a	src/printf.c	/^static void ui2a(unsigned int num, unsigned int base, int uc,char * bf)$/;"	f	typeref:typename:void	file:
+uli2a	src/printf.c	/^static void uli2a(unsigned long int num, unsigned int base, int uc,char * bf)$/;"	f	typeref:typename:void	file:
+val	src/timer.c	/^static unsigned int val = NSEC_PER_SEC \/ HZ;$/;"	v	typeref:typename:unsigned int	file:
 vectors	src/entry.S	/^vectors:$/;"	l
 ventry	src/entry.S	/^	.macro	ventry	label$/;"	m
 write_sysreg	include/sysregs.h	/^#define write_sysreg(/;"	d
 writel	include/io.h	/^#define writel(/;"	d
+串口打印	doc/1.1.md	/^##### 串口打印$/;"	T
+前置知识点	doc/1.1.md	/^### 前置知识点$/;"	S
+启动	doc/1.1.md	/^### 启动$/;"	S
