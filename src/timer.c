@@ -3,8 +3,9 @@
 #include "timer.h"
 #include "peripherals/timer.h"
 #include "peripherals/irq.h"
+#include "sysregs.h"
 #define  HZ                   250
-static unsigned int val = NSEC_PER_SEC / HZ;
+static unsigned int val       = 0;
 
 /*
 *cntp_ctl_el0 : Control register for the EL1 physical timer
@@ -44,6 +45,10 @@ static void enable_timer_interrupt(void)
 void timer_init(void)
 {
 	generic_timer_init();
+	unsigned int clk = read_sysreg(CNTFRQ_EL0);
+	printf("the system counter freq is %dHZ\n", clk);
+        val = clk / HZ;
+
 	generic_timer_reset(val);
 	enable_timer_interrupt();
 }

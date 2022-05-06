@@ -11,7 +11,7 @@ void kernel_main(void)
 	timer_init();
 	enable_irq();
 	while (1) ;
-	//{
-	//	uart_send(uart_recv());
-	//}
+	{
+		uart_send(uart_recv());
+	}
 }
