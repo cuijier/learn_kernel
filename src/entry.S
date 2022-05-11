@@ -1,5 +1,5 @@
 #include "vector_entry.h"
-
+#include "asm-offsets.h"
 
 
 	.macro handle_invalid_entry type
@@ -128,10 +128,80 @@ fiq_invalid_el0_32:
 error_invalid_el0_32:
 	handle_invalid_entry  ERROR_INVALID_EL0_32
 
+
+tsk     .req    x28             // current thread_info
+
+	.macro get_thread_info, rd
+	mov     \rd, sp
+	and     \rd, \rd, #~(1<<12 - 1)   // top of stack
+	.endm
+
 el1_irq:
 	kernel_entry 
 	bl	handle_irq
+	get_thread_info tsk
+	ldr  w24, [tsk, #TIF_PREEMPT_COUNT]
+	cbnz w24, 1f
+	ldr  w0, [tsk, #TIF_NEED_RESCHED]
+	//@ and  w0, w0, #_TIF_NEED_RESCHED
+	cbz  w0, 1f
+	bl el1_preempt
+1:
+	kernel_exit
+
+el1_preempt:
+	mov     x24, lr
+	bl preempt_schedule_irq
+	ret     x24
 	kernel_exit 
 
 .globl err_hang
 err_hang: b err_hang
+
+
+/*
+ 进程fork之后第一次进程切换
+ 对于内核线程：
+    x19保存了进程回调函数的入口
+    x20保存进程的回调函数的参数
+ */
+.align 2
+.global ret_from_fork
+ret_from_fork:
+	mov x0, x20
+	blr x19
+
+
+/*
+进程切换： 保存prev进程的上下文，并且恢复next进程
+的上下文
+  cpu_switch_to(struct task_struct *prev,
+	   struct task_struct *next);
+
+需要保存的上下文： x19 ~ x29， sp， lr
+保存到进程的task_struct->cpu_context
+ */
+.align
+.global cpu_switch_to
+cpu_switch_to:
+	add     x8, x0, #THREAD_CPU_CONTEXT
+	mov     x9, sp
+	stp     x19, x20, [x8], #16
+	stp     x21, x22, [x8], #16
+	stp     x23, x24, [x8], #16
+	stp     x25, x26, [x8], #16
+	stp     x27, x28, [x8], #16
+	stp     x29, x9, [x8], #16
+	str     lr, [x8]
+
+	add     x8, x1, #THREAD_CPU_CONTEXT
+	ldp     x19, x20, [x8], #16
+	ldp     x21, x22, [x8], #16
+	ldp     x23, x24, [x8], #16
+	ldp     x25, x26, [x8], #16
+	ldp     x27, x28, [x8], #16
+	ldp     x29, x9, [x8], #16
+	ldr     lr, [x8]
+	mov     sp, x9
+	ret
+

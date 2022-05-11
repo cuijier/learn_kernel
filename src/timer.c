@@ -4,7 +4,7 @@
 #include "peripherals/timer.h"
 #include "peripherals/irq.h"
 #include "sysregs.h"
-#define  HZ                   250
+#define  HZ                   1
 static unsigned int val       = 0;
 
 /*
@@ -57,5 +57,6 @@ void handle_timer_irq(void)
 {
 	generic_timer_reset(val);
 	printf("Core0 Timer interrupt received\n");
+	task_tick();
 }
 
