@@ -168,6 +168,7 @@ err_hang: b err_hang
 .align 2
 .global ret_from_fork
 ret_from_fork:
+	bl schedule_tail
 	mov x0, x20
 	blr x19
 

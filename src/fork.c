@@ -13,6 +13,8 @@ int do_fork(unsigned long clone_flags, unsigned long fn, unsigned long arg)
 	
 	p->state = TASK_RUNNING;
 	p->counter = TASK_SLICE;
+	p->preempt_count = 0;
+	p->flag          = 0;
 	p->cpu_context.x19 = fn;
 	p->cpu_context.x20 = arg;
 	p->cpu_context.pc = (unsigned long)ret_from_fork;

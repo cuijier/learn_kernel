@@ -2,6 +2,8 @@
 #include "sysregs.h"
 #include "uart.h"
 #include "printf.h"
+#include "current.h"
+#include "sched.h"
 
 
 static void delay(int n)
@@ -13,8 +15,8 @@ static void delay(int n)
 void kernel_thread(char *array)
 {
 	while (1) {
-		delay(10000000);
-		printf("%s: %s\n", __func__, array);
+		delay(200000);
+		printf("%s: %s [counter:%d, preempt:%d, need_resched:%d]\n", __func__, array, current->counter,  current->preempt_count, current->flag);
 	}
 }
 

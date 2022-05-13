@@ -4,7 +4,7 @@
 #include "peripherals/timer.h"
 #include "peripherals/irq.h"
 #include "sysregs.h"
-#define  HZ                   1
+#define  HZ                   100
 static unsigned int val       = 0;
 
 /*
