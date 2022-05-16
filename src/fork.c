@@ -1,7 +1,6 @@
 #include "sched.h"
 #include "fork.h"
 
-#define TASK_SLICE         20
 int nr_tasks = 0;
 struct task_struct* task[64] = {0,};
 
@@ -21,5 +20,8 @@ int do_fork(unsigned long clone_flags, unsigned long fn, unsigned long arg)
 	p->cpu_context.sp = (unsigned long)p + THREAD_SIZE;
 	p->pid            = nr_tasks;
 	task[nr_tasks++]  = p;
+	task[nr_tasks-1]->next = task[0];
+	if(nr_tasks >=2)
+		task[nr_tasks-2]->next = task[nr_tasks-1];
 	return 0;
 }

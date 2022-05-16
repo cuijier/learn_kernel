@@ -42,6 +42,8 @@ enum task_state {
 #define PREEMPT_OFFSET	(1UL << PREEMPT_SHIFT)
 #define HARDIRQ_OFFSET	(1UL << HARDIRQ_SHIFT)
 
+#define TASK_SLICE         20
+
 struct task_struct {
 	struct cpu_context   cpu_context;
 	enum   task_state    state;	
@@ -50,6 +52,7 @@ struct task_struct {
 	long   preempt_count;
 	int    flag;
     int    pid;
+	struct task_struct * next;
 };
 
 

@@ -5,7 +5,7 @@
 #include "current.h"
 #include "sched.h"
 
-
+extern struct task_struct* task[64];
 static void delay(int n)
 {
 	while (n--)
@@ -29,6 +29,7 @@ void kernel_main(void)
 	enable_irq();
 	int nRet = do_fork(0, (unsigned long)&kernel_thread, (unsigned long)"12345");
 	    nRet = do_fork(0, (unsigned long)&kernel_thread, (unsigned long)"abcde");
+	switch_to(task[0]);
 	schedule();
 	while(1);
 }

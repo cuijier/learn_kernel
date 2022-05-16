@@ -44,6 +44,8 @@ static inline void preempt_sub(int val)
  */
 void schedule_tail(struct task_struct *prev)
 {
+    prev->counter = TASK_SLICE;
+    prev->flag &= (~_TIF_NEED_RESCHED);
 	/* 打开中断 */
 	enable_irq();
 }
@@ -56,16 +58,7 @@ void schedule_tail(struct task_struct *prev)
 
 struct task_struct *pick_next_task(struct task_struct* rq[], int nr_tasks)
 {
-    int index = 0, max_counter = 0;
-    for(int i = 0; i < nr_tasks; i++)
-    {
-        if(rq[i]->counter > max_counter)
-        {
-            max_counter = rq[i]->counter;
-            index = i;
-        }
-    }
-    return rq[index];
+    return current->next;
 }
 
 void __schedule()
@@ -76,10 +69,21 @@ void __schedule()
     next = pick_next_task(task, nr_tasks);
     if(prev != next)
     {
+        prev->counter = TASK_SLICE;
         last = cpu_switch_to(prev, next);
     }
     schedule_tail(last);
 }
+
+void switch_to(struct task_struct *next)
+{
+	struct task_struct *prev = current;
+
+	if (current == next)
+		return;
+	cpu_switch_to(prev, next);
+}
+
 
 /* 普通调度 */
 void schedule(void)
