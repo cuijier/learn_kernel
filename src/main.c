@@ -15,7 +15,7 @@ static void delay(int n)
 void kernel_thread(char *array)
 {
 	while (1) {
-		delay(200000);
+		delay(400000);
 		printf("%s: %s [counter:%d, preempt:%d, need_resched:%d]\n", __func__, array, current->counter,  current->preempt_count, current->flag);
 	}
 }
