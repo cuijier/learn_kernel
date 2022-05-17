@@ -48,7 +48,6 @@ struct task_struct {
 	struct cpu_context   cpu_context;
 	enum   task_state    state;	
 	long   counter;
-	long   policy;
 	long   preempt_count;
 	int    flag;
     int    pid;

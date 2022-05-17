@@ -11,7 +11,7 @@ int do_fork(unsigned long clone_flags, unsigned long fn, unsigned long arg)
 		return -1;
 	
 	p->state = TASK_RUNNING;
-	p->counter = TASK_SLICE;
+	p->counter = 0;
 	p->preempt_count = 0;
 	p->flag          = 0;
 	p->cpu_context.x19 = fn;

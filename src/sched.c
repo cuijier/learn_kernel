@@ -9,13 +9,12 @@ int task_tick()
 {
     printf("%s enter\n",__func__);
 
-    current->counter--;
-    if(current->counter > 0)
+    current->counter++;
+    if(current->counter < TASK_SLICE)
     {
         printf("%s leave1\n",__func__);
         return 0;
     }
-    current->counter = 0;
     current->flag |= _TIF_NEED_RESCHED;
     printf("%s leave2\n",__func__);
     return 0;
@@ -52,7 +51,7 @@ static inline void preempt_sub(int val)
 void schedule_tail(struct task_struct *prev)
 {
     printf("%s enter\n",__func__);
-    prev->counter = TASK_SLICE;
+    prev->counter = 0;
     prev->flag &= (~_TIF_NEED_RESCHED);
 	/* 打开中断 */
 	enable_irq();
@@ -80,7 +79,7 @@ void __schedule()
     if(prev != next)
     {
         printf("%s next:0x%x\n",__func__, next);
-        prev->counter = TASK_SLICE;
+        //prev->counter = TASK_SLICE;
         last = cpu_switch_to(prev, next);
         printf("%s last:0x%x\n",__func__, last);
     }
