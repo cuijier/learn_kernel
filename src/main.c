@@ -30,6 +30,5 @@ void kernel_main(void)
 	int nRet = do_fork(0, (unsigned long)&kernel_thread, (unsigned long)"12345");
 	    nRet = do_fork(0, (unsigned long)&kernel_thread, (unsigned long)"abcde");
 	switch_to(task[0]);
-	schedule();
 	while(1);
 }
