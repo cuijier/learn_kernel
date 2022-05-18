@@ -1,8 +1,6 @@
 #ifndef _ENTRY_H
 #define _ENTRY_H
 
-#define S_FRAME_SIZE			320		// size of all saved registers 
-
 //EL1t Exception 
 #define SYNC_INVALID_EL1t		0 
 #define IRQ_INVALID_EL1t		1 
