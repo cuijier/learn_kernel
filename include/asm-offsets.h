@@ -7,9 +7,13 @@
  *
  */
 
-#define S_FRAME_SIZE 264 /* sizeof(struct pt_regs) */
+#define S_FRAME_SIZE 272 /* sizeof(struct pt_regs) */
 #define THREAD_CPU_CONTEXT 0 /* offsetof(struct task_struct, cpu_context) */
 #define TIF_PREEMPT_COUNT 120 /* offsetof(struct task_struct, preempt_count) */
 #define TIF_NEED_RESCHED 128 /* offsetof(struct task_struct, flag) */
+#define S_X0 0 /* offsetof(struct pt_regs, regs) */
+#define S_SP 248 /* offsetof(struct pt_regs, sp) */
+#define S_PC 256 /* offsetof(struct pt_regs, pc) */
+#define S_PSTATE 264 /* offsetof(struct pt_regs, pstate) */
 
 #endif

@@ -22,16 +22,19 @@ const char *entry_error_messages[] = {
 	"SYNC_INVALID_EL0_32",		
 	"IRQ_INVALID_EL0_32",		
 	"FIQ_INVALID_EL0_32",		
-	"ERROR_INVALID_EL0_32"	
+	"ERROR_INVALID_EL0_32",
+	"SYNC_ERROR",
+	"SYSCALL_ERROR"
 };
 
 void show_invalid_entry_message(int type, unsigned long esr, unsigned long address)
 {
-	printf("%s, ESR: %x, address: %x\r\n", entry_error_messages[type], esr, address);
+	printf("%s, ESR: 0x%x, address: %x\r\n", entry_error_messages[type], esr, address);
 }
 
 void handle_irq(void)
 {
+	printf("%s enter\n",__func__);
     unsigned int irq = readl(0x40000060);
     switch(irq)
     {
@@ -39,4 +42,5 @@ void handle_irq(void)
              handle_timer_irq();
              break;
     }
+	printf("%s leave\n",__func__);
 }

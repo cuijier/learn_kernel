@@ -6,17 +6,20 @@
 #include "sched.h"
 
 extern struct task_struct* task[64];
-static void delay(int n)
+
+void user_process()
 {
-	while (n--)
-		;
+	char buf[30] = {0};
+	sprintf(buf, "User process started\n");
+	call_sys_write(buf);
 }
 
 void kernel_thread(char *array)
 {
-	while (1) {
-		delay(400000);
-		printf("%s: %s [counter:%d, preempt:%d, need_resched:%d]\n", __func__, array, current->counter,  current->preempt_count, current->flag);
+	printf("kernel_thread enter\n");
+	int err = move_to_user_mode((unsigned long)&user_process);
+	if (err < 0){
+		printf("Error while moving process to user mode\n\r");
 	}
 }
 
@@ -27,8 +30,7 @@ void kernel_main(void)
 	printf("current Exception level:%d\n", (int)currentEL);
 	timer_init();
 	enable_irq();
-	int nRet = do_fork(0, (unsigned long)&kernel_thread, (unsigned long)"12345");
-	    nRet = do_fork(0, (unsigned long)&kernel_thread, (unsigned long)"abcde");
+	int nRet = do_fork(PF_KTHREAD, (unsigned long)&kernel_thread, (unsigned long)"12345", 0);
 	switch_to(task[0]);
 	while(1);
 }

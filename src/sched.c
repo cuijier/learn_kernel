@@ -20,12 +20,12 @@ int task_tick()
     return 0;
 }
 
-static inline void preempt_disable(void)
+void preempt_disable(void)
 {
 	current->preempt_count++;
 }
 
-static inline void preempt_enable(void)
+void preempt_enable(void)
 {
 	current->preempt_count--;
 }
@@ -38,6 +38,11 @@ static inline void preempt_add(int val)
 static inline void preempt_sub(int val)
 {
 	current->preempt_count -= val;
+}
+
+struct pt_regs * get_task_pt_regs(struct task_struct * task)
+{
+    return (struct pt_regs *)((unsigned long)task + THREAD_SIZE - sizeof(struct pt_regs));
 }
 
 /*
@@ -92,7 +97,9 @@ void switch_to(struct task_struct *next)
 
 	if (current == next)
 		return;
+    disable_irq();
 	cpu_switch_to(prev, next);
+    enable_irq();
 }
 
 

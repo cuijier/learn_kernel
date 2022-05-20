@@ -139,6 +139,25 @@
 #define HCR_SWIO	(UL(1) << 1)
 #define HCR_VM		(UL(1) << 0)
 
+
+// ***************************************
+// SPSR_EL3, Saved Program Status Register (EL3) Page 288 of AArch64-Reference-Manual.
+// ***************************************
+
+#define SPSR_MASK_ALL 			(7 << 6)
+#define SPSR_EL1h			(5 << 0)
+#define SPSR_VALUE			(SPSR_MASK_ALL | SPSR_EL1h)
+
+// ***************************************
+// ESR_EL1, Exception Syndrome Register (EL1). Page 1899 of AArch64-Reference-Manual.
+// ***************************************
+
+#define ESR_ELx_EC_SHIFT		26
+
+// EC == 010101 : SVC instruction execution in AArch64 state.
+#define ESR_ELx_EC_SVC64		0x15
+#define ESR_ELx_EC_DABT_LOW		0x24
+
 /*
  * The bits we set in HCR:
  * TLOR:	Trap LORegion register accesses
