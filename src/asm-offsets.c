@@ -11,6 +11,7 @@ int main(void)
 	DEFINE(TIF_PREEMPT_COUNT,	offsetof(struct task_struct, preempt_count));
 	DEFINE(TIF_NEED_RESCHED,	offsetof(struct task_struct, flag));
 	DEFINE(S_X0,                offsetof(struct pt_regs, regs));
+	DEFINE(S_X30,                offsetof(struct pt_regs, regs[30]));
 	DEFINE(S_SP,                offsetof(struct pt_regs, sp));
 	DEFINE(S_PC,                offsetof(struct pt_regs, pc));
 	DEFINE(S_PSTATE,            offsetof(struct pt_regs, pstate));

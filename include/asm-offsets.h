@@ -12,6 +12,7 @@
 #define TIF_PREEMPT_COUNT 120 /* offsetof(struct task_struct, preempt_count) */
 #define TIF_NEED_RESCHED 128 /* offsetof(struct task_struct, flag) */
 #define S_X0 0 /* offsetof(struct pt_regs, regs) */
+#define S_X30 240 /* offsetof(struct pt_regs, regs[30]) */
 #define S_SP 248 /* offsetof(struct pt_regs, sp) */
 #define S_PC 256 /* offsetof(struct pt_regs, pc) */
 #define S_PSTATE 264 /* offsetof(struct pt_regs, pstate) */

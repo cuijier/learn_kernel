@@ -130,5 +130,15 @@ void preempt_schedule_irq(void)
     //printf("%s leave\n",__func__);
 }
 
+void exit_process(){
+	preempt_disable();
+    current->state = TASK_ZOMBIE;
+	if (current->stack) {
+		free_page(current->stack);
+	}
+	preempt_enable();
+	schedule();
+}
+
 
 

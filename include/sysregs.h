@@ -225,3 +225,10 @@
 		:: "rZ"(_val)); \
 } while (0))
 
+#define read_general_reg(reg) ({ \
+		u64 _val; \
+		asm volatile("mov %0," #reg \
+		: "=r"(_val)); \
+		_val; \
+})
+

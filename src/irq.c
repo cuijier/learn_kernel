@@ -2,6 +2,7 @@
 #include "timer.h"
 #include "io.h"
 #include "printf.h"
+#include "sysregs.h"
 
 const char *entry_error_messages[] = {
 	"SYNC_INVALID_EL1t",
@@ -29,12 +30,13 @@ const char *entry_error_messages[] = {
 
 void show_invalid_entry_message(int type, unsigned long esr, unsigned long address)
 {
-	printf("%s, ESR: 0x%x, address: %x\r\n", entry_error_messages[type], esr, address);
+	printf("%s, ESR: 0x%x, ELR: 0x%x\r\n", entry_error_messages[type], esr, address);
 }
 
 void handle_irq(void)
 {
-	printf("%s enter\n",__func__);
+	int currentEL = read_sysreg(CurrentEL) >> 2;
+	printf("%s enter currentEL:%d\n",__func__, currentEL);
     unsigned int irq = readl(0x40000060);
     switch(irq)
     {

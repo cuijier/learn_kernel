@@ -41,6 +41,7 @@
 	stp x24, x25, [sp, #16 *12]
 	stp x26, x27, [sp, #16 *13]
 	stp x28, x29, [sp, #16 *14]
+	str x30, [sp, #S_X30]
 	mrs     x22, elr_el1
 	mrs     x23, spsr_el1
 	.if	\el == 0
@@ -84,6 +85,7 @@
 	ldp     x24, x25, [sp, #16 * 12]
 	ldp     x26, x27, [sp, #16 * 13]
 	ldp     x28, x29, [sp, #16 * 14]
+	ldr     x30, [sp, #S_X30]           // load SPSR
 	add     sp, sp, #S_FRAME_SIZE           // restore sp
 	eret                                    // return to kernel
 	.endm
@@ -172,6 +174,7 @@ tsk     .req    x28             // current thread_info
 
 	.macro get_thread_info, rd
 	mov     \rd, sp
+	//add     \rd, \rd, #S_FRAME_SIZE
 	and     \rd, \rd, #~(1<<12 - 1)   // top of stack
 	.endm
 
