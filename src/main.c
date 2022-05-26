@@ -17,9 +17,9 @@ void user_process1(char *array)
 {
 	char buf[30] = {0};
 	while (1){
-			sprintf(buf, "%s\n", array);
+			sprintf(buf, "fn:%s, args:%s\n", __func__, array);
 			call_sys_write(buf);
-			delay(100000);
+			delay(200000);
 		}
 }
 
@@ -43,8 +43,7 @@ void user_process()
 		sprintf(buf, "call_sys_clone2 fail\n");
 		call_sys_write(buf);
 	}
-	while(1);
-	//call_sys_exit();
+	call_sys_exit();
 }
 
 void kernel_thread(char *array)
@@ -57,6 +56,14 @@ void kernel_thread(char *array)
 	}
 }
 
+void kernel_process(char *array)
+{
+	while (1){
+			printf("fn:%s, args:%s\n", __func__, array);
+			delay(200000);
+		}
+}
+
 void kernel_main(void)
 {
 	uart_init();
@@ -65,6 +72,7 @@ void kernel_main(void)
 	timer_init();
 	enable_irq();
 	int nRet = do_fork(PF_KTHREAD, (unsigned long)&kernel_thread, (unsigned long)"12345", 0);
+			   do_fork(PF_KTHREAD, (unsigned long)&kernel_process, (unsigned long)"kernel process", 0);
 	switch_to(task[0]);
 	while(1);
 }

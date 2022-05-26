@@ -71,7 +71,11 @@ void schedule_tail(struct task_struct *prev)
 
 struct task_struct *pick_next_task(struct task_struct* rq[], int nr_tasks)
 {
-    return current->next;
+    struct task_struct * pPrev = current;
+    while(pPrev->next->state == TASK_ZOMBIE)
+        pPrev = pPrev->next;
+
+    return pPrev->next;
 }
 
 void __schedule()
