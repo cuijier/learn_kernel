@@ -149,7 +149,7 @@ sync_invalid_el0_64:
 el0_irq:
 	kernel_entry 0 
 	bl	handle_irq
-	kernel_exit 0 
+	b	ret_to_user
 
 fiq_invalid_el0_64:
 	handle_invalid_entry  0, FIQ_INVALID_EL0_64
@@ -184,8 +184,8 @@ el1_irq:
 	get_thread_info tsk
 	ldr  w24, [tsk, #TIF_PREEMPT_COUNT]
 	cbnz w24, 1f
-	ldr  w0, [tsk, #TIF_NEED_RESCHED]
-	//@ and  w0, w0, #_TIF_NEED_RESCHED
+	ldr  w0, [tsk, #THREAD_FLAG]
+	//and  w0, w0, #_TIF_NEED_RESCHED
 	cbz  w0, 1f
 	bl el1_preempt
 1:
@@ -232,6 +232,12 @@ ret_from_syscall:
 	str	x0, [sp, #S_X0]				// returned x0
 	kernel_exit 0
 
+
+work_pending:
+	mov	x0, sp				// 'regs'
+	bl	do_notify_resume
+	b	finish_ret_to_user
+
 /*
  进程fork之后第一次进程切换
  对于内核线程：
@@ -247,6 +253,14 @@ ret_from_fork:
 	blr x19
 ret_to_user:
 	bl disable_irq
+	get_thread_info tsk
+	ldr	x1, [tsk, #THREAD_FLAG]
+	//and	x2, x1, #_TIF_WORK_MASK
+	mov x2, x1
+	cbnz	x2, work_pending
+finish_ret_to_user:
+	ldr x1, [sp, #S_X8]
+	str x1, [sp, #S_X0]
 	kernel_exit 0
 
 /*

@@ -43,13 +43,14 @@ void user_process()
 		sprintf(buf, "call_sys_clone2 fail\n");
 		call_sys_write(buf);
 	}
-	call_sys_exit();
+	while(1);
+	//call_sys_exit();
 }
 
 void kernel_thread(char *array)
 {
 	printf("kernel_thread enter\n");
-	preempt_disable();
+	//preempt_disable();
 	int err = move_to_user_mode((unsigned long)&user_process);
 	if (err < 0){
 		printf("Error while moving process to user mode\n\r");

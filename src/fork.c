@@ -2,6 +2,7 @@
 #include "fork.h"
 #include "current.h"
 #include "printf.h"
+#include "utils.h"
 
 int nr_tasks = 0;
 struct task_struct* task[64] = {0,};
@@ -16,7 +17,7 @@ int do_fork(unsigned long clone_flags, unsigned long fn, unsigned long arg, unsi
 	struct pt_regs * ptr = get_task_pt_regs(p);
 	memzero((unsigned long)ptr, sizeof(struct pt_regs));
 	memzero((unsigned long)&p->cpu_context, sizeof(struct cpu_context));
-
+	printf("%s, task:%p, fn:%p, arg:%s\n", __func__, p, fn, arg);
 	p->state = TASK_RUNNING;
 	p->counter = 0;
 	p->preempt_count = 0;
@@ -29,10 +30,12 @@ int do_fork(unsigned long clone_flags, unsigned long fn, unsigned long arg, unsi
 	else
 	{
 		p->stack = stack;
-		//struct pt_regs * cur_regs = get_task_pt_regs(current);
-		//*ptr                = *cur_regs;
+		struct pt_regs * cur_regs = get_task_pt_regs(current);
+		memcpy(ptr, cur_regs, sizeof(struct pt_regs));
 		ptr->regs[0] = 0;
+		ptr->regs[8] = arg;
 		ptr->sp            = p->stack + THREAD_SIZE;
+		ptr->pc            = fn;
 	}
 	p->cpu_context.pc = (unsigned long)ret_from_fork;
 	p->cpu_context.sp = (unsigned long)ptr;

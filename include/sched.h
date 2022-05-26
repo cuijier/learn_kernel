@@ -32,6 +32,7 @@ enum task_state {
 
 #define _TIF_SIGPENDING		(1 << TIF_SIGPENDING)
 #define _TIF_NEED_RESCHED	(1 << TIF_NEED_RESCHED)
+#define _TIF_WORK_MASK       (_TIF_NEED_RESCHED)
 
 #define PREEMPT_BITS	8
 #define HARDIRQ_BITS	4

@@ -16,7 +16,7 @@ int task_tick()
         return 0;
     }
     current->flag |= _TIF_NEED_RESCHED;
-    //printf("%s leave2\n",__func__);
+    printf("task:%p need resched\n",current);
     return 0;
 }
 
@@ -76,14 +76,14 @@ struct task_struct *pick_next_task(struct task_struct* rq[], int nr_tasks)
 
 void __schedule()
 {
-    //printf("%s enter\n",__func__);
+    printf("%s enter\n",__func__);
     //disable_irq();
     struct task_struct *prev, *next, *last;
     prev = current;
     next = pick_next_task(task, nr_tasks);
     if(prev != next)
     {
-        //printf("%s next:0x%x\n",__func__, next);
+        printf("%s next:0x%x\n",__func__, next);
         //prev->counter = TASK_SLICE;
         last = cpu_switch_to(prev, next);
         //printf("%s last:0x%x\n",__func__, last);
@@ -120,14 +120,14 @@ void schedule(void)
  */
 void preempt_schedule_irq(void)
 {
-    //printf("%s enter\n",__func__);
+    printf("%s enter\n",__func__);
 	/* 关闭抢占，以免嵌套发生调度抢占*/
 	preempt_disable();
     enable_irq();
 	__schedule();
 	disable_irq();
 	preempt_enable();
-    //printf("%s leave\n",__func__);
+    printf("%s leave\n",__func__);
 }
 
 void exit_process(){

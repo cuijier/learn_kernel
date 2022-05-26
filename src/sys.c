@@ -8,9 +8,9 @@ void sys_write(char * buf){
 	pregs->regs[0] = printf(buf);
 }
 
-int sys_clone(void * stack)
+int sys_clone(void *fn, void * arg, void * stack)
 {
-	return do_fork(0,0,0, stack);
+	return do_fork(0, fn ,arg, stack);
 }
 
 unsigned long sys_malloc()
