@@ -1,0 +1,5 @@
+build/*.o
+.vscode/configurationCache.log
+.vscode/dryrun.log
+.vscode/settings.json
+.vscode/targets.log
