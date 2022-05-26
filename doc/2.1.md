@@ -55,6 +55,9 @@ vectors:
     .endm
 ```
 现在只关注中断这一部分的实现，在处理中断前需要先保存当前CPU 程序运行状态，这个通过 `kernel_entry` 函数完成，处理完中断后需要恢复到中断之前的状态,通过`kernel_exit` 来实现.
+
+![image](https://documentation-service.arm.com/static/5f872814405d955c5176de29?token=)
+
 ```
 el1_irq:
         kernel_entry
@@ -140,7 +143,8 @@ disable_irq:
 ARMv8架构集成了`generic timer`的硬件设计，为系统提供了计时、计数以及触发timer event的功能.
 
 ARM generic timer相关的硬件block如下图所示
-![image](https://github.com/cuijier/learn_kernel/blob/v1/doc/doc_pic/2.2.PNG)
+
+![2.2.PNG](https://s2.loli.net/2022/05/25/9HLGNmqI31JWUiR.png)
 
 
 从图可知每个generic timer分两部分构成
@@ -157,7 +161,7 @@ System counter是一个永远在线的设备，它提供固定频率的系统计
 #### `Generic Timer`
 所有`generic timer`的`physical counter`都来自`system counter`，可通过`CNTPCT_EL0` 寄存器来获取, 有 physical 就有virtual, processor可以通过`CNTVCT`寄存器访问`virtual counter`, 不过对于不支持security extension和virtualization extension的系统, `virtual counter`和`physical counter`是一样的值.
 每个timer都会有三个寄存器,如下表
-![image](https://github.com/cuijier/learn_kernel/blob/v1/doc/doc_pic/2.1.PNG)
+![2.1.PNG](https://s2.loli.net/2022/05/25/VGHJs9BvNEzL864.png)
 
 ```
 CV: 64-bit CompareValue register.
@@ -184,7 +188,8 @@ Control: Counter-timer Physical Timer Control register
 #### `Timer interrrupt`
 timer 通过`CTL`寄存器配置是否生成中断，每个core timer 生成的中断只能分发到该core，不能分发到别的core.属于PPI,各Timer 与中断号的对于关系如下.
 
-![image](https://github.com/cuijier/learn_kernel/blob/v1/doc/doc_pic/2.3.PNG)
+![2.3.PNG](https://s2.loli.net/2022/05/25/cAVBX2ab4WYZlqj.png)
+
 
 ```
 //Control 设置为1,打开了Timer并会生成interrupt 信号.
@@ -209,5 +214,11 @@ asm volatile(
 : "memory");
 ```
 
-![1HZ Timer interrupt](https://github.com/cuijier/learn_kernel/blob/v1/doc/doc_pic/2.4.gif)
+
+![2.4.gif](https://s2.loli.net/2022/05/25/fRQ5Um72Fp9hLH8.gif)
+
+
+
+
+
 
