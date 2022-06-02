@@ -1,21 +1,23 @@
 
 ### 前置知识点
 ##### 1. 常见汇编指令
-- mrs : `Move System Register allows the PE to read an AArch64 System register into a general-purpose register` (读取系统寄存器值到通用寄存器).
+- **`mrs`** : `Move System Register allows the PE to read an AArch64 System register into a general-purpose register` (读取系统寄存器值到通用寄存器).
 
-- msr : `Move general-purpose register to System Register allows the PE to write an AArch64 System register from a
+- **`msr`** : `Move general-purpose register to System Register allows the PE to write an AArch64 System register from a
 general-purpose register` (读取通用寄存器的值到系统寄存器).
 
-- adr : `Load a label's relative address into the target register`.
+- **`adr`** : `Load a label's relative address into the target register`.
 
-- ldr : `calculates an address from a base register value and an offset register value, loads a word
+- **`ldr`** : `calculates an address from a base register value and an offset register value, loads a word
 from memory, and writes it to a register` (从基地址 + offset 处读取内存值到寄存器).
 
-- mov : `copies a value from a register to the destination register` (从寄存器拷贝赋值给目标寄存器).
+- **`mov`** : `copies a value from a register to the destination register` (从寄存器拷贝赋值给目标寄存器).
 
-- isb : 它会清洗流水线，以保证所有它前面的指令都执行完毕之后，才执行它后面的指令.
-- cbz : `and Branch on Zero compares the value in a register with zero, and conditionally branches to a label at a PC-relative offset if the comparison is equal` (将寄存器的值和0 比较，如果相等则跳转到label).
-- lsr : `Logical Shift Right (register) shifts a register value right by a variable number of bits, shifting in zeros, and writes the result to the destination register.` 
+- **`isb`** : 它会清洗流水线，以保证所有它前面的指令都执行完毕之后，才执行它后面的指令.
+- **`cbz`** : `and Branch on Zero compares the value in a register with zero, and conditionally branches to a label at a PC-relative offset if the comparison is equal` (将寄存器的值和0 比较，如果相等则跳转到label).
+- **`lsr`** : `Logical Shift Right (register) shifts a register value right by a variable number of bits, shifting in zeros, and writes the result to the destination register.` 
+
+![基本指令.png](https://s2.loli.net/2022/05/30/gjPkeQyOG4fL1ZJ.png)
 
 
 ##### 2. ARM寄存器
@@ -44,7 +46,8 @@ bit 31：[0] : EL0/1 all is AARCH32
 
 而操作系统是运行在EL1 运行等级，该等级能够访问系统寄存器和配置管理进程资源. EL2 用于虚拟机场景，EL3 用于实现Trustzone 技术隔离REE 和TEE.
 
-![image](http://www.justfun.icu/wp-content/uploads/2022/03/tz_06.jpg)
+
+![tz_06.jpg](https://s2.loli.net/2022/05/25/vPhnGpVylETaUZq.jpg)
 
 
 ---
@@ -94,7 +97,6 @@ el2_entry:
 
 	adr x0, el1_entry
 	msr elr_el2, x0
-
 	eret
 
 el1_entry:
@@ -116,7 +118,9 @@ el1_entry:
 ### 主函数
 ##### 1. 串口初始化
 UART 相关的GPIO 描述如下.
-![image](https://github.com/cuijier/learn_kernel/blob/v1/doc/doc_pic/1.3.PNG)
+
+![1.3.PNG](https://s2.loli.net/2022/05/25/u1HNkzU7CcxmtEe.png)
+
 
 
 我们使用GPIO14/15作为串口的发送和接收引脚，对应表格可以看到我们需要使用这两个引脚的alt0 function.
@@ -127,14 +131,14 @@ GPFSEL1: GPIO10 ~ GPIO19 alt function setting
        bit [14:12] : gpio14 alt setting, 100 is alt function 0.
        bit [17:15] : gpio15 alt setting, 100 is alt function 0.
 ```
-![image](https://github.com/cuijier/learn_kernel/blob/v1/doc/doc_pic/1.2.PNG)
+
+![1.2.PNG](https://s2.loli.net/2022/05/25/OlMuKIZT7hzNLkU.png)
+
 
 并将其配置为`no pull up/down`，完成基本的gpio 属性配置后就是波特率的设置了
 
 
-```math
- BAUDDIV = \frac {FUARTCLK}{16\times Baudrate} = IBRD + 64\times FBRD
-```
+![111.PNG](https://s2.loli.net/2022/05/27/1Y5TtFioQyPHcZV.png)
 
 
 ```

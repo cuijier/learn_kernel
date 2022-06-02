@@ -95,7 +95,7 @@ struct pt_regs {
 
 `task_struct` 和 `pt_regs` 位置如下图.
 
-![image](https://github.com/cuijier/learn_kernel/blob/v1/doc/doc_pic/3/3.1.svg)
+![3.1.png](https://s2.loli.net/2022/05/25/uhpBrdQZAcJ5V9X.png)
 
 
 #### 进程创建
@@ -299,5 +299,5 @@ void preempt_schedule_irq(void)
 ```
  中断调度时同样需要禁止抢占以免发生抢占嵌套，同时允许中断嵌套.
  
- ![image](https://github.com/cuijier/learn_kernel/blob/v1/doc/doc_pic/3/3.2.PNG)
+![3.2.PNG](https://s2.loli.net/2022/05/25/nD8TCzljiM2rJW7.png)
 
