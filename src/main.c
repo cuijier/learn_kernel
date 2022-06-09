@@ -4,53 +4,24 @@
 #include "printf.h"
 #include "current.h"
 #include "sched.h"
+#include "sys.h"
+#include "user.h"
 
 extern struct task_struct* task[64];
 
-static void delay(int n)
+void delay(int n)
 {
 	while (n--)
 		;
 }
 
-void user_process1(char *array)
-{
-	char buf[30] = {0};
-	while (1){
-			sprintf(buf, "fn:%s, args:%s\n", __func__, array);
-			call_sys_write(buf);
-			delay(200000);
-		}
-}
-
-void user_process()
-{
-	char buf[30] = {0};
-	sprintf(buf, "User process started\n");
-	call_sys_write(buf);
-	void * pstack1 = (void *)call_sys_malloc();
-	int nRet = call_sys_clone(user_process1, "12345", pstack1);
-	if(nRet < 0)
-	{
-		sprintf(buf, "call_sys_clone1 fail\n");
-		call_sys_write(buf);
-	}
-
-	void * pstack2 = (void *)call_sys_malloc();
-	nRet = call_sys_clone(user_process1, "abcde", pstack2);
-	if(nRet < 0)
-	{
-		sprintf(buf, "call_sys_clone2 fail\n");
-		call_sys_write(buf);
-	}
-	call_sys_exit();
-}
-
 void kernel_thread(char *array)
 {
-	printf("kernel_thread enter\n");
-	//preempt_disable();
-	int err = move_to_user_mode((unsigned long)&user_process);
+	printf("%s enter\n",__func__);
+	unsigned long begin = (unsigned long)&user_begin;
+	unsigned long end = (unsigned long)&user_end;
+	unsigned long process = (unsigned long)&user_process;
+	int err = move_to_user_mode(begin, end - begin, process - begin);
 	if (err < 0){
 		printf("Error while moving process to user mode\n\r");
 	}

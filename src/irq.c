@@ -25,19 +25,20 @@ const char *entry_error_messages[] = {
 	"FIQ_INVALID_EL0_32",		
 	"ERROR_INVALID_EL0_32",
 	"SYNC_ERROR",
-	"SYSCALL_ERROR"
+	"SYSCALL_ERROR",
+	"DATA_ABORT_ERROR"
 };
 
 void show_invalid_entry_message(int type, unsigned long esr, unsigned long address)
 {
-	printf("%s, ESR: 0x%x, ELR: 0x%x\r\n", entry_error_messages[type], esr, address);
+	printf("%s, ESR: 0x%x, EC:0x%x,ISS:0x%x ELR: 0x%x\r\n", entry_error_messages[type], esr, esr >> 26, esr & ((1 << 25) -1), address);
 }
 
 void handle_irq(void)
 {
 	int currentEL = read_sysreg(CurrentEL) >> 2;
 	printf("%s enter currentEL:%d\n",__func__, currentEL);
-    unsigned int irq = readl(0x40000060);
+    unsigned int irq = readl(CORE0_IRQ_SOURCE);
     switch(irq)
     {
         case 2:

@@ -3,6 +3,8 @@
 #include "timer.h"
 #include "peripherals/timer.h"
 #include "peripherals/irq.h"
+#include "current.h"
+#include "mm.h"
 #include "sysregs.h"
 #define  HZ                   100
 static unsigned int val       = 0;
@@ -37,8 +39,11 @@ static int generic_timer_reset(unsigned int val)
 	return 0;
 }
 
+
 static void enable_timer_interrupt(void)
 {
+	kernel_map(CORE0_TIMER_CTL);
+	kernel_map(CORE0_IRQ_SOURCE);
 	writel(SYSTEM_TIMER_IRQ_1, CORE0_TIMER_CTL);
 }
 

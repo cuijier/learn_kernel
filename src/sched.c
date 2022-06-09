@@ -1,6 +1,7 @@
 #include "sched.h"
 #include "current.h"
 #include "printf.h"
+#include "mm.h"
 
 extern int nr_tasks;
 extern struct task_struct* task[64];
@@ -15,7 +16,7 @@ int task_tick()
         //printf("%s leave1\n",__func__);
         return 0;
     }
-    current->flag |= _TIF_NEED_RESCHED;
+    //current->flag |= _TIF_NEED_RESCHED;
     printf("task:%p need resched\n",current);
     return 0;
 }
@@ -102,6 +103,12 @@ void switch_to(struct task_struct *next)
 	if (current == next)
 		return;
     disable_irq();
+    printf("%s set_pgd:0x%lx\n",__func__, next->mm.pgd);
+
+    //if next task is user process,switch pgd.
+    if(next->mm.pgd)
+        set_pgd(next->mm.pgd);
+
 	cpu_switch_to(prev, next);
     enable_irq();
 }
@@ -138,7 +145,7 @@ void exit_process(){
 	preempt_disable();
     current->state = TASK_ZOMBIE;
 	if (current->stack) {
-		free_page(current->stack);
+		free_page((unsigned long)current->stack);
 	}
 	preempt_enable();
 	schedule();

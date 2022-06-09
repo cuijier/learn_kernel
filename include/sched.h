@@ -46,6 +46,21 @@ enum task_state {
 #define TASK_SLICE         20
 #define PF_KTHREAD                 0x00000002
 
+#define MAX_PROCESS_PAGES			16	
+
+struct user_page {
+	unsigned long phys_addr;
+	unsigned long virt_addr;
+};
+
+struct mm_struct {
+	unsigned long pgd;
+	int user_pages_count;
+	struct user_page user_pages[MAX_PROCESS_PAGES];
+	int kernel_pages_count;
+	unsigned long kernel_pages[MAX_PROCESS_PAGES];
+};
+
 struct task_struct {
 	struct cpu_context   cpu_context;
 	enum   task_state    state;	
@@ -54,6 +69,7 @@ struct task_struct {
 	int    flag;
     int    pid;
 	void*  stack;
+	struct mm_struct mm;
 	struct task_struct * next;
 };
 
@@ -69,7 +85,11 @@ union task_union {
 	struct task_struct task;
 	unsigned long stack[THREAD_SIZE/sizeof(long)];
 };
-
+#ifndef __ASSEMBLER__
 void preempt_disable(void);
 void preempt_enable(void);
+void exit_process();
+struct pt_regs * get_task_pt_regs(struct task_struct * task);
+void schedule(void);
+#endif
 #endif

@@ -2,14 +2,15 @@
 #include "asm-offsets.h"
 #include "sysregs.h"
 #include "sys.h"
-	.macro handle_invalid_entry el, type
-	kernel_entry \el
-	mov	x0, #\type
-	mrs	x1, esr_el1
-	mrs	x2, elr_el1
-	bl	show_invalid_entry_message
-	b	err_hang
-	.endm
+
+.macro handle_invalid_entry el, type
+kernel_entry \el
+mov	x0, #\type
+mrs	x1, esr_el1
+mrs	x2, elr_el1
+bl	show_invalid_entry_message
+b	err_hang
+.endm
 
 
 /*
@@ -107,7 +108,7 @@ vectors:
         ventry	error_invalid_el1t			// Error EL1t
 
         ventry	sync_invalid_el1h			// Synchronous EL1h
-        ventry	el1_irq					// IRQ EL1h
+        ventry	el1_irq						// IRQ EL1h
         ventry	fiq_invalid_el1h			// FIQ EL1h
         ventry	error_invalid_el1h			// Error EL1h
 
@@ -121,6 +122,13 @@ vectors:
         ventry	fiq_invalid_el0_32			// FIQ 32-bit EL0
         ventry	error_invalid_el0_32			// Error 32-bit EL0
 
+tsk     .req    x28             // current thread_info
+
+.macro get_thread_info, rd
+mov     \rd, sp
+//add     \rd, \rd, #S_FRAME_SIZE
+and     \rd, \rd, #~(1<<12 - 1)   // top of stack
+.endm
 
 sync_invalid_el1t:
 	handle_invalid_entry  1, SYNC_INVALID_EL1t
@@ -170,14 +178,6 @@ error_invalid_el0_32:
 	handle_invalid_entry  0, ERROR_INVALID_EL0_32
 
 
-tsk     .req    x28             // current thread_info
-
-	.macro get_thread_info, rd
-	mov     \rd, sp
-	//add     \rd, \rd, #S_FRAME_SIZE
-	and     \rd, \rd, #~(1<<12 - 1)   // top of stack
-	.endm
-
 el1_irq:
 	kernel_entry 1
 	bl	handle_irq
@@ -208,6 +208,8 @@ el0_sync:
 	lsr	x24, x25, #ESR_ELx_EC_SHIFT		// exception class
 	cmp	x24, #ESR_ELx_EC_SVC64			// SVC in 64-bit state
 	b.eq	el0_svc
+	cmp	x24, #ESR_ELx_EC_DABT_LOW		// data abort in EL0
+	b.eq	el0_da
 	handle_invalid_entry 0, SYNC_ERROR
 
 sc_nr	.req	x25					// number of system calls
@@ -232,6 +234,17 @@ ret_from_syscall:
 	str	x0, [sp, #S_X0]				// returned x0
 	kernel_exit 0
 
+el0_da:
+	bl	enable_irq
+	mrs	x0, far_el1
+	mrs	x1, esr_el1
+	bl	do_mem_abort
+	cmp x0, 0
+	b.eq 1f
+	handle_invalid_entry 0, DATA_ABORT_ERROR
+1:
+	bl disable_irq				
+	kernel_exit 0
 
 work_pending:
 	mov	x0, sp				// 'regs'

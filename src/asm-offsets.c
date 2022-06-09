@@ -6,6 +6,7 @@
 
 int main(void)
 {
+	DEFINE(S_TASK_SIZE,         sizeof(struct task_struct));
 	DEFINE(S_FRAME_SIZE,        sizeof(struct pt_regs));
 	DEFINE(THREAD_CPU_CONTEXT,	offsetof(struct task_struct, cpu_context));
 	DEFINE(TIF_PREEMPT_COUNT,	offsetof(struct task_struct, preempt_count));
@@ -16,4 +17,5 @@ int main(void)
 	DEFINE(S_SP,                offsetof(struct pt_regs, sp));
 	DEFINE(S_PC,                offsetof(struct pt_regs, pc));
 	DEFINE(S_PSTATE,            offsetof(struct pt_regs, pstate));
+	DEFINE(S_PGD,               offsetof(struct task_struct, mm));
 }

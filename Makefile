@@ -34,18 +34,16 @@ $(BUILD_DIR)/asm-offsets.s : src/asm-offsets.c
 	mkdir -p $(@D)
 	gcc -Iinclude -S $< -o $@
 
-$(offsets-file) : $(BUILD_DIR)/asm-offsets.s
-	@$(cmd_offsets)
 
 all : rpios.bin
 
 clean :
 	rm -rf $(BUILD_DIR) *.img
 run :
-	qemu-system-aarch64 -machine raspi3 -nographic -kernel rpios.img
+	qemu-system-aarch64 -machine raspi3 -nographic -kernel rpios.img -serial mon:stdio
 
 debug : 
-	qemu-system-aarch64 -machine raspi3 -nographic -kernel rpios.img -S -s
+	qemu-system-aarch64 -machine raspi3 -nographic -kernel rpios.img  -S -s
 
 $(BUILD_DIR)/%_c.o: $(SRC_DIR)/%.c
 	mkdir -p $(@D)
@@ -53,6 +51,9 @@ $(BUILD_DIR)/%_c.o: $(SRC_DIR)/%.c
 
 $(BUILD_DIR)/%_s.o: $(SRC_DIR)/%.S
 	$(ARMGNU)-gcc $(ASMOPS) -MMD -c $< -o $@
+
+$(offsets-file) : $(BUILD_DIR)/asm-offsets.s
+	@$(cmd_offsets)
 
 C_FILES = $(filter-out $(SRC_DIR)/asm-offsets.c, $(wildcard $(SRC_DIR)/*.c))
 

@@ -1,4 +1,4 @@
-#include <types.h>
+#include "types.h"
 
 
 /*
@@ -66,8 +66,7 @@
 #define SCTLR_EL1_SA0		(_BITUL(4))
 
 #define SCTLR_EL1_RES1 \
-	((_BITUL(11)) | (_BITUL(20)) | (_BITUL(22)) | (_BITUL(28)) | \
-	(_BITUL(29)))
+	((_BITUL(11)) | (_BITUL(20)) | (_BITUL(22)) | (_BITUL(28)))
 #define SCTLR_EL1_RES0 \
 	((_BITUL(6))  | (_BITUL(10)) | (_BITUL(13)) | (_BITUL(17)) | \
 	(_BITUL(27)) | (_BITUL(30)) | (_BITUL(31)) | \
@@ -139,7 +138,7 @@
 #define HCR_SWIO	(UL(1) << 1)
 #define HCR_VM		(UL(1) << 0)
 
-
+#define SCTLR_MMU_ENABLED               (UL(1) << 0)
 // ***************************************
 // SPSR_EL3, Saved Program Status Register (EL3) Page 288 of AArch64-Reference-Manual.
 // ***************************************
@@ -157,7 +156,6 @@
 // EC == 010101 : SVC instruction execution in AArch64 state.
 #define ESR_ELx_EC_SVC64		0x15
 #define ESR_ELx_EC_DABT_LOW		0x24
-
 /*
  * The bits we set in HCR:
  * TLOR:	Trap LORegion register accesses

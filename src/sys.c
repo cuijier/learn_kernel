@@ -3,6 +3,8 @@
 #include "current.h"
 #include "sched.h"
 #include "sysregs.h"
+#include "fork.h"
+
 void sys_write(char * buf){
 	struct pt_regs* pregs = get_task_pt_regs(current);
 	pregs->regs[0] = printf(buf);
@@ -10,7 +12,7 @@ void sys_write(char * buf){
 
 int sys_clone(void *fn, void * arg, void * stack)
 {
-	return do_fork(0, fn ,arg, stack);
+	return do_fork(0, (unsigned long)fn, (unsigned long)arg, (unsigned long)stack);
 }
 
 unsigned long sys_malloc()

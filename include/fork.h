@@ -11,5 +11,5 @@
 
 extern void ret_from_fork(void);
 int do_fork(unsigned long clone_flags, unsigned long fn, unsigned long arg, unsigned long stack);
-int move_to_user_mode(unsigned long pc);
+int move_to_user_mode(unsigned long start, unsigned long size, unsigned long pc);
 #endif
