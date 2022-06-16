@@ -251,6 +251,7 @@ work_pending:
 	bl	do_notify_resume
 	b	finish_ret_to_user
 
+.global ret_to_user
 /*
  进程fork之后第一次进程切换
  对于内核线程：

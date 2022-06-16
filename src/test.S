@@ -1,0 +1,834 @@
+#define PTR .quad
+#define ALGN .balign 8
+#define _text 0
+	.section .rodata, "a"
+.globl kallsyms_addresses
+	ALGN
+kallsyms_addresses:
+	PTR	_text + 0xffff000000080000
+	PTR	_text + 0xffff000000080010
+	PTR	_text + 0xffff000000080014
+	PTR	_text + 0xffff000000080028
+	PTR	_text + 0xffff000000080054
+	PTR	_text + 0xffff0000000800b4
+	PTR	_text + 0xffff00000008017c
+	PTR	_text + 0xffff000000081000
+	PTR	_text + 0xffff000000081000
+	PTR	_text + 0xffff000000081028
+	PTR	_text + 0xffff00000008104c
+	PTR	_text + 0xffff000000081058
+	PTR	_text + 0xffff000000081064
+	PTR	_text + 0xffff000000081070
+	PTR	_text + 0xffff0000000810b0
+	PTR	_text + 0xffff000000081800
+	PTR	_text + 0xffff00000008180c
+	PTR	_text + 0xffff0000000819f8
+	PTR	_text + 0xffff000000081a68
+	PTR	_text + 0xffff000000081be8
+	PTR	_text + 0xffff000000081c5c
+	PTR	_text + 0xffff000000081d2c
+	PTR	_text + 0xffff000000081e34
+	PTR	_text + 0xffff000000081e40
+	PTR	_text + 0xffff000000081e78
+	PTR	_text + 0xffff000000081eb4
+	PTR	_text + 0xffff000000081ee4
+	PTR	_text + 0xffff000000081efc
+	PTR	_text + 0xffff000000081f58
+	PTR	_text + 0xffff000000081fdc
+	PTR	_text + 0xffff000000081fe8
+	PTR	_text + 0xffff000000082080
+	PTR	_text + 0xffff0000000820ac
+	PTR	_text + 0xffff0000000820e4
+	PTR	_text + 0xffff000000082140
+	PTR	_text + 0xffff0000000821fc
+	PTR	_text + 0xffff00000008242c
+	PTR	_text + 0xffff00000008247c
+	PTR	_text + 0xffff000000082528
+	PTR	_text + 0xffff0000000825dc
+	PTR	_text + 0xffff000000082780
+	PTR	_text + 0xffff0000000827b0
+	PTR	_text + 0xffff000000082808
+	PTR	_text + 0xffff000000082858
+	PTR	_text + 0xffff0000000828b4
+	PTR	_text + 0xffff000000082a2c
+	PTR	_text + 0xffff000000082a4c
+	PTR	_text + 0xffff000000082a58
+	PTR	_text + 0xffff000000082aa8
+	PTR	_text + 0xffff000000082acc
+	PTR	_text + 0xffff000000082af0
+	PTR	_text + 0xffff000000082b08
+	PTR	_text + 0xffff000000082b40
+	PTR	_text + 0xffff000000082b8c
+	PTR	_text + 0xffff000000082c20
+	PTR	_text + 0xffff000000082ca8
+	PTR	_text + 0xffff000000082cc8
+	PTR	_text + 0xffff000000082d18
+	PTR	_text + 0xffff000000082d64
+	PTR	_text + 0xffff000000082d94
+	PTR	_text + 0xffff000000082dc4
+	PTR	_text + 0xffff000000082e68
+	PTR	_text + 0xffff000000082e9c
+	PTR	_text + 0xffff000000082f30
+	PTR	_text + 0xffff000000082f60
+	PTR	_text + 0xffff000000082f6c
+	PTR	_text + 0xffff00000008319c
+	PTR	_text + 0xffff000000083260
+	PTR	_text + 0xffff0000000832a4
+	PTR	_text + 0xffff0000000832c4
+	PTR	_text + 0xffff0000000832fc
+	PTR	_text + 0xffff000000083348
+	PTR	_text + 0xffff0000000833a4
+	PTR	_text + 0xffff0000000833e0
+	PTR	_text + 0xffff000000083458
+	PTR	_text + 0xffff0000000835a0
+	PTR	_text + 0xffff0000000838cc
+	PTR	_text + 0xffff000000083a28
+	PTR	_text + 0xffff000000083b84
+	PTR	_text + 0xffff000000084ccc
+	PTR	_text + 0xffff000000084d64
+	PTR	_text + 0xffff000000084df8
+	PTR	_text + 0xffff000000084e8c
+	PTR	_text + 0xffff000000084ee8
+	PTR	_text + 0xffff000000084f48
+	PTR	_text + 0xffff000000084ff0
+	PTR	_text + 0xffff000000085000
+	PTR	_text + 0xffff00000008501c
+	PTR	_text + 0xffff00000008506c
+	PTR	_text + 0xffff0000000850dc
+	PTR	_text + 0xffff000000085104
+	PTR	_text + 0xffff000000085118
+	PTR	_text + 0xffff000000085124
+	PTR	_text + 0xffff00000008512c
+	PTR	_text + 0xffff000000085800
+	PTR	_text + 0xffff000000085f84
+	PTR	_text + 0xffff000000085ff4
+	PTR	_text + 0xffff000000086064
+	PTR	_text + 0xffff0000000860d4
+	PTR	_text + 0xffff000000086144
+	PTR	_text + 0xffff0000000861b4
+	PTR	_text + 0xffff000000086224
+	PTR	_text + 0xffff000000086294
+	PTR	_text + 0xffff000000086304
+	PTR	_text + 0xffff000000086368
+	PTR	_text + 0xffff0000000863d8
+	PTR	_text + 0xffff000000086448
+	PTR	_text + 0xffff0000000864b8
+	PTR	_text + 0xffff000000086528
+	PTR	_text + 0xffff000000086598
+	PTR	_text + 0xffff000000086608
+	PTR	_text + 0xffff0000000866e0
+	PTR	_text + 0xffff0000000866ec
+	PTR	_text + 0xffff0000000866f0
+	PTR	_text + 0xffff0000000867d4
+	PTR	_text + 0xffff0000000867f8
+	PTR	_text + 0xffff000000086868
+	PTR	_text + 0xffff0000000868d0
+	PTR	_text + 0xffff0000000869bc
+	PTR	_text + 0xffff0000000869c8
+	PTR	_text + 0xffff0000000869d8
+	PTR	_text + 0xffff0000000869f0
+	PTR	_text + 0xffff000000086a58
+	PTR	_text + 0xffff000000086aa4
+	PTR	_text + 0xffff000000086ab4
+	PTR	_text + 0xffff000000086b08
+	PTR	_text + 0xffff000000086d28
+	PTR	_text + 0xffff000000086d98
+	PTR	_text + 0xffff000000086da8
+	PTR	_text + 0xffff000000086db8
+	PTR	_text + 0xffff000000086e70
+	PTR	_text + 0xffff000000086e80
+	PTR	_text + 0xffff000000086f08
+	PTR	_text + 0xffff000000086f10
+	PTR	_text + 0xffff00000008869c
+	PTR	_text + 0xffff0000000886a0
+	PTR	_text + 0xffff000000088728
+	PTR	_text + 0xffff000000088748
+	PTR	_text + 0xffff0000000887e0
+	PTR	_text + 0xffff0000000887e0
+	PTR	_text + 0xffff0000000c73e0
+	PTR	_text + 0xffff0000000c73e8
+	PTR	_text + 0xffff0000000c74e8
+	PTR	_text + 0xffff0000000c74f0
+	PTR	_text + 0xffff0000000c8000
+	PTR	_text + 0xffff0000000cb000
+
+.globl kallsyms_num_syms
+	ALGN
+kallsyms_num_syms:
+	.long	146
+
+.globl kallsyms_names
+	ALGN
+kallsyms_names:
+	.byte 0x05, 0x54, 0x50, 0xe6, 0x72, 0x74
+	.byte 0x05, 0x74, 0xa5, 0x5f, 0x9f, 0xb7
+	.byte 0x05, 0x74, 0xe4, 0x73, 0x74, 0xfd
+	.byte 0x04, 0xce, 0x32, 0x5f, 0xbd
+	.byte 0x02, 0x1f, 0xbd
+	.byte 0x07, 0x15, 0xfa, 0x80, 0x87, 0x5f, 0x3e, 0x73
+	.byte 0x05, 0x15, 0xfa, 0x80, 0x13, 0xc8
+	.byte 0x03, 0x8b, 0x04, 0xfe
+	.byte 0x03, 0x8b, 0x8a, 0x31
+	.byte 0x02, 0x8b, 0x8a
+	.byte 0x02, 0x85, 0x06
+	.byte 0x03, 0x85, 0x6d, 0x83
+	.byte 0x03, 0x85, 0xab, 0xe2
+	.byte 0x02, 0x85, 0x0b
+	.byte 0x02, 0x8b, 0x9b
+	.byte 0x01, 0xa9
+	.byte 0x04, 0x2a, 0xc9, 0x6f, 0x73
+	.byte 0x06, 0x2a, 0x5f, 0x6f, 0x05, 0x0a, 0x74
+	.byte 0x0b, 0x74, 0x6b, 0xe5, 0x97, 0xec, 0xab, 0x70, 0x61, 0x6e, 0xf6, 0x55
+	.byte 0x07, 0x0f, 0x75, 0x00, 0xe3, 0x9d, 0xf4, 0xbd
+	.byte 0x08, 0xd8, 0x6e, 0x77, 0xfe, 0xf6, 0x51, 0x61, 0xdd
+	.byte 0x06, 0xc2, 0x75, 0x00, 0xe3, 0x9d, 0x65
+	.byte 0x01, 0xa9
+	.byte 0x02, 0x86, 0x06
+	.byte 0x02, 0x86, 0x0b
+	.byte 0x03, 0x86, 0x6d, 0x83
+	.byte 0x03, 0x86, 0xab, 0xe2
+	.byte 0x09, 0xd0, 0x68, 0x6f, 0x77, 0xef, 0x1d, 0xdd, 0xbf, 0xcf
+	.byte 0x03, 0x10, 0x6c, 0x84
+	.byte 0x01, 0xa9
+	.byte 0x05, 0x3d, 0x66, 0xfa, 0xf4, 0x87
+	.byte 0x05, 0x54, 0x66, 0xfa, 0xf4, 0x87
+	.byte 0x06, 0x54, 0x83, 0x80, 0xa3, 0xc9, 0xcf
+	.byte 0x05, 0x18, 0xe6, 0xdb, 0xf4, 0xbd
+	.byte 0x02, 0x18, 0x3e
+	.byte 0x04, 0x54, 0xc8, 0xc9, 0xcf
+	.byte 0x06, 0x54, 0x83, 0x80, 0x75, 0xbc, 0x87
+	.byte 0x0a, 0xc3, 0x6f, 0x70, 0x20, 0x76, 0xe9, 0xff, 0xb3, 0xe8, 0x79
+	.byte 0x06, 0x58, 0x1e, 0x61, 0x62, 0xe8, 0x74
+	.byte 0x02, 0x90, 0xc8
+	.byte 0x03, 0x0f, 0x16, 0x79
+	.byte 0x03, 0x89, 0x94, 0x9b
+	.byte 0x05, 0x89, 0xff, 0xfa, 0x63, 0x76
+	.byte 0x07, 0x89, 0x94, 0xf1, 0xf6, 0x73, 0xe3, 0x03
+	.byte 0x04, 0x89, 0xff, 0xfe, 0xe2
+	.byte 0x06, 0x54, 0xc9, 0x75, 0x74, 0xd1, 0xc0
+	.byte 0x01, 0xa9
+	.byte 0x06, 0x54, 0xa7, 0x5f, 0xca, 0x63, 0x6b
+	.byte 0x05, 0x40, 0xff, 0x64, 0x17, 0xb8
+	.byte 0x04, 0x40, 0xff, 0x5d, 0xb8
+	.byte 0x07, 0x3d, 0xa7, 0xc9, 0xff, 0xfa, 0x67, 0x73
+	.byte 0x06, 0xd0, 0x8d, 0xf4, 0xe6, 0x69, 0x6c
+	.byte 0x08, 0x96, 0x5b, 0x6b, 0x5f, 0x6e, 0xab, 0xff, 0xa7
+	.byte 0x04, 0x54, 0xf7, 0x73, 0x09
+	.byte 0x03, 0xd0, 0x1a, 0xda
+	.byte 0x02, 0xd0, 0x09
+	.byte 0x04, 0x40, 0x94, 0x8d, 0x84
+	.byte 0x05, 0x54, 0xab, 0x69, 0xff, 0x8a
+	.byte 0x0a, 0x58, 0x6e, 0x6f, 0xca, 0x66, 0x20, 0xfa, 0x73, 0x75, 0xdd
+	.byte 0x03, 0xc2, 0x16, 0x79
+	.byte 0x06, 0x90, 0x74, 0x68, 0xfa, 0x61, 0x64
+	.byte 0x02, 0x90, 0x8a
+	.byte 0x03, 0x90, 0xe4, 0xfe
+	.byte 0x04, 0xd0, 0x70, 0xcd, 0x74
+	.byte 0x01, 0xa9
+	.byte 0x02, 0x58, 0x29
+	.byte 0x0b, 0x54, 0x6d, 0x6f, 0x76, 0xf4, 0x4b, 0xbc, 0x6d, 0x6f, 0x64, 0x65
+	.byte 0x05, 0xa2, 0x62, 0x75, 0x05, 0xfd
+	.byte 0x04, 0xa2, 0x6e, 0xb5, 0x6c
+	.byte 0x03, 0xa2, 0xd1, 0xc0
+	.byte 0x02, 0xa2, 0x2c
+	.byte 0x06, 0x94, 0xe3, 0x6e, 0x6c, 0xf1, 0x50
+	.byte 0x07, 0xff, 0x69, 0xec, 0x64, 0x69, 0x67, 0xe2
+	.byte 0x04, 0xff, 0x61, 0xda, 0x69
+	.byte 0x03, 0xa2, 0xfa, 0x76
+	.byte 0x05, 0x48, 0x66, 0xe8, 0xe4, 0x74
+	.byte 0x01, 0x2f
+	.byte 0x03, 0x2f, 0x5f, 0x3f
+	.byte 0x05, 0xff, 0x76, 0x73, 0x6e, 0xc4
+	.byte 0x02, 0x54, 0xbb
+	.byte 0x02, 0xd0, 0xbb
+	.byte 0x03, 0xd0, 0x6e, 0xbb
+	.byte 0x02, 0x4a, 0xbb
+	.byte 0x04, 0x4a, 0x73, 0x6e, 0xbb
+	.byte 0x03, 0x54, 0x2c, 0xc4
+	.byte 0x03, 0x24, 0x3b, 0xe2
+	.byte 0x06, 0x24, 0xb4, 0xd2, 0xfa, 0x0a, 0x74
+	.byte 0x09, 0x74, 0x5d, 0xdb, 0xf4, 0x3b, 0xa6, 0x75, 0x70, 0x74
+	.byte 0x03, 0x54, 0x3b, 0xe2
+	.byte 0x06, 0x10, 0x6c, 0xf4, 0xb4, 0xd2, 0xd9
+	.byte 0x04, 0xd0, 0x65, 0xff, 0x14
+	.byte 0x02, 0x3d, 0x14
+	.byte 0x04, 0x54, 0x5d, 0xdb, 0x84
+	.byte 0x04, 0xc2, 0x17, 0xdb, 0x84
+	.byte 0x05, 0x4a, 0x65, 0x4d, 0xe8, 0x73
+	.byte 0x02, 0x8e, 0x92
+	.byte 0x03, 0x74, 0xd9, 0x92
+	.byte 0x02, 0x95, 0x92
+	.byte 0x02, 0x81, 0x92
+	.byte 0x02, 0x8e, 0x59
+	.byte 0x02, 0x95, 0x59
+	.byte 0x02, 0x81, 0x59
+	.byte 0x02, 0x8e, 0x43
+	.byte 0x02, 0x82, 0xd9
+	.byte 0x02, 0x95, 0x43
+	.byte 0x02, 0x81, 0x43
+	.byte 0x02, 0x8e, 0x8f
+	.byte 0x03, 0x74, 0xd9, 0x8f
+	.byte 0x02, 0x95, 0x8f
+	.byte 0x02, 0x81, 0x8f
+	.byte 0x02, 0x1f, 0xd9
+	.byte 0x04, 0x7d, 0xc9, 0x88, 0x74
+	.byte 0x05, 0x54, 0xc7, 0x5f, 0x9f, 0xb7
+	.byte 0x02, 0x82, 0xa4
+	.byte 0x04, 0x82, 0x73, 0x76, 0x63
+	.byte 0x06, 0x74, 0x6e, 0x69, 0x5f, 0xf8, 0x73
+	.byte 0x06, 0x74, 0x21, 0xf8, 0x73, 0x63, 0xe5
+	.byte 0x03, 0x82, 0x64, 0x61
+	.byte 0x06, 0x74, 0x77, 0x57, 0xc9, 0x9b, 0x03
+	.byte 0x03, 0x54, 0x21, 0x29
+	.byte 0x04, 0x54, 0x2d, 0x73, 0xfd
+	.byte 0x08, 0xea, 0xfe, 0x4e, 0x68, 0x5f, 0x2d, 0x73, 0xfd
+	.byte 0x06, 0xc3, 0x70, 0x75, 0x50, 0x1a, 0xda
+	.byte 0x05, 0x54, 0xb3, 0x7a, 0xfd, 0x6f
+	.byte 0x05, 0x54, 0xb3, 0x63, 0x70, 0x79
+	.byte 0x03, 0xcb, 0x34, 0x34
+	.byte 0x03, 0x37, 0x38, 0x36
+	.byte 0x02, 0x7e, 0x33
+	.byte 0x02, 0x3a, 0x34
+	.byte 0x03, 0xcb, 0x32, 0x36
+	.byte 0x02, 0x7e, 0x35
+	.byte 0x02, 0x3a, 0x39
+	.byte 0x03, 0x37, 0x39, 0x33
+	.byte 0x02, 0x7e, 0x32
+	.byte 0x03, 0x64, 0xfe, 0x64
+	.byte 0x15, 0xf6, 0x47, 0x4c, 0x4f, 0x42, 0x41, 0x4c, 0x5f, 0x4f, 0x46, 0x46, 0x53, 0x45, 0x54, 0x5f, 0x54, 0x41, 0x42, 0x4c, 0x45, 0x5f
+	.byte 0x05, 0x44, 0xd3, 0x63, 0xba, 0x3e
+	.byte 0x09, 0x44, 0x1d, 0xc7, 0xe8, 0x5f, 0xdd, 0xbf, 0xcf, 0x73
+	.byte 0x03, 0x62, 0x1e, 0xc8
+	.byte 0x06, 0x42, 0x9e, 0x73, 0xec, 0x04, 0xfe
+	.byte 0x06, 0x42, 0x6e, 0x72, 0x5f, 0xa7, 0x73
+	.byte 0x02, 0x42, 0xa7
+	.byte 0x02, 0x62, 0xf3
+	.byte 0x05, 0x44, 0x9e, 0x73, 0xec, 0x9b
+	.byte 0x05, 0x44, 0x13, 0x60, 0x64, 0xe9
+	.byte 0x05, 0x44, 0x5a, 0x5f, 0x64, 0xe9
+
+.globl kallsyms_markers
+	ALGN
+kallsyms_markers:
+	.long	0
+
+.globl kallsyms_token_table
+	ALGN
+kallsyms_token_table:
+	.asciz	"mp_back"
+	.asciz	"_back"
+	.asciz	"ack"
+	.asciz	"ing"
+	.asciz	"beg"
+	.asciz	"ff"
+	.asciz	"write"
+	.asciz	"rite"
+	.asciz	"ite"
+	.asciz	"chedule"
+	.asciz	"se"
+	.asciz	"clone"
+	.asciz	"lone"
+	.asciz	"ne"
+	.asciz	"be"
+	.asciz	"td"
+	.asciz	"Thand"
+	.asciz	"hand"
+	.asciz	"nd"
+	.asciz	"id"
+	.asciz	"pgd"
+	.asciz	"t__c"
+	.asciz	"ela"
+	.asciz	"isa"
+	.asciz	"Tmap_"
+	.asciz	"t__"
+	.asciz	"witch_"
+	.asciz	"itch_"
+	.asciz	"ch_"
+	.asciz	"entry_"
+	.asciz	"mem_"
+	.asciz	"tel1_"
+	.asciz	"y_"
+	.asciz	"ret_from_"
+	.asciz	"om_"
+	.asciz	"m_"
+	.asciz	"tgeneric_"
+	.asciz	"tgeneric"
+	.asciz	"generic"
+	.asciz	"neric"
+	.asciz	"eric"
+	.asciz	"fork"
+	.asciz	"tget_symbol"
+	.asciz	"ret_fr"
+	.asciz	"fct"
+	.asciz	"ret_to_u"
+	.asciz	"."
+	.asciz	"t_ntoa_long"
+	.asciz	"0"
+	.asciz	"1"
+	.asciz	"2"
+	.asciz	"3"
+	.asciz	"4"
+	.asciz	"5"
+	.asciz	"6"
+	.asciz	"r__func__.11"
+	.asciz	"8"
+	.asciz	"9"
+	.asciz	"r__func__.121"
+	.asciz	"timer_in"
+	.asciz	"er_in"
+	.asciz	"Tget_"
+	.asciz	"table"
+	.asciz	"long"
+	.asciz	"Tpreemp"
+	.asciz	"A"
+	.asciz	"B"
+	.asciz	"_invalid_el0_64"
+	.asciz	"D"
+	.asciz	"E"
+	.asciz	"F"
+	.asciz	"G"
+	.asciz	"t_ntoa_"
+	.asciz	"toa_"
+	.asciz	"Tv"
+	.asciz	"to_u"
+	.asciz	"L"
+	.asciz	"ct"
+	.asciz	"is"
+	.asciz	"O"
+	.asciz	"_s"
+	.asciz	"fr"
+	.asciz	"t_n"
+	.asciz	"S"
+	.asciz	"T"
+	.asciz	"symbol"
+	.asciz	"ol"
+	.asciz	"ork"
+	.asciz	"Tdo_"
+	.asciz	"_invalid_el1h"
+	.asciz	"pg"
+	.asciz	"ic"
+	.asciz	"symb"
+	.asciz	"ena"
+	.asciz	"to_"
+	.asciz	"_"
+	.asciz	"map_"
+	.asciz	"a"
+	.asciz	"b"
+	.asciz	"c"
+	.asciz	"d"
+	.asciz	"e"
+	.asciz	"f"
+	.asciz	"g"
+	.asciz	"h"
+	.asciz	"i"
+	.asciz	"o_"
+	.asciz	"k"
+	.asciz	"l"
+	.asciz	"m"
+	.asciz	"n"
+	.asciz	"o"
+	.asciz	"p"
+	.asciz	"q"
+	.asciz	"r"
+	.asciz	"s"
+	.asciz	"t"
+	.asciz	"u"
+	.asciz	"v"
+	.asciz	"w"
+	.asciz	"x"
+	.asciz	"y"
+	.asciz	"z"
+	.asciz	"a_"
+	.asciz	"64"
+	.asciz	"tel1"
+	.asciz	"r__func__.120"
+	.asciz	"ret_"
+	.asciz	"ate_"
+	.asciz	"terror"
+	.asciz	"tel0_"
+	.asciz	"alloc"
+	.asciz	"e_irq"
+	.asciz	"Tcall_sys_"
+	.asciz	"Tsys_"
+	.asciz	"page"
+	.asciz	"reemp"
+	.asciz	"Tuar"
+	.asciz	"process"
+	.asciz	"Tuser_"
+	.asciz	"Tcall_"
+	.asciz	"chedul"
+	.asciz	"tsync"
+	.asciz	"_invalid_el0_32"
+	.asciz	"Tkernel_"
+	.asciz	"ched"
+	.asciz	"_invalid_el1t"
+	.asciz	"at"
+	.asciz	"t_s"
+	.asciz	"tfiq"
+	.asciz	"Tp"
+	.asciz	"sym"
+	.asciz	"tfi"
+	.asciz	"ree"
+	.asciz	"proce"
+	.asciz	"end"
+	.asciz	"ed"
+	.asciz	"ac"
+	.asciz	"_b"
+	.asciz	"ha"
+	.asciz	"kernel_"
+	.asciz	"32"
+	.asciz	"t_out_"
+	.asciz	"kernel"
+	.asciz	"sync"
+	.asciz	"proc"
+	.asciz	"terr"
+	.asciz	"task"
+	.asciz	"kern"
+	.asciz	"tget_current"
+	.asciz	"urrent"
+	.asciz	"ex"
+	.asciz	"t_ou"
+	.asciz	"rent"
+	.asciz	"ur"
+	.asciz	"t_o"
+	.asciz	"lo"
+	.asciz	"ern"
+	.asciz	"ren"
+	.asciz	"mem"
+	.asciz	"tim"
+	.asciz	"ul"
+	.asciz	"sk"
+	.asciz	"ng"
+	.asciz	"ble"
+	.asciz	"tget_c"
+	.asciz	"all_"
+	.asciz	"printf_"
+	.asciz	"ser_"
+	.asciz	"entry"
+	.asciz	"try"
+	.asciz	"ss"
+	.asciz	"ar"
+	.asciz	"mp"
+	.asciz	"Td"
+	.asciz	"Tc"
+	.asciz	"printf"
+	.asciz	"_invalid_el0_"
+	.asciz	"tget_"
+	.asciz	"err"
+	.asciz	"map"
+	.asciz	"_p"
+	.asciz	"ti"
+	.asciz	"r__func__.12"
+	.asciz	"_invalid_el1"
+	.asciz	"prin"
+	.asciz	"tel"
+	.asciz	"age"
+	.asciz	"Ts"
+	.asciz	"ch"
+	.asciz	"er_"
+	.asciz	"sys_"
+	.asciz	"r__func__.1"
+	.asciz	"nc__.1"
+	.asciz	"r__fu"
+	.asciz	"__fu"
+	.asciz	"Tu"
+	.asciz	"irq"
+	.asciz	"to"
+	.asciz	"bl"
+	.asciz	"__f"
+	.asciz	"me"
+	.asciz	"oc"
+	.asciz	"__.1"
+	.asciz	"__."
+	.asciz	"get_"
+	.asciz	"it"
+	.asciz	"tr"
+	.asciz	"ma"
+	.asciz	"all"
+	.asciz	"ta"
+	.asciz	"0_"
+	.asciz	"or"
+	.asciz	"ir"
+	.asciz	"tf"
+	.asciz	"pr"
+	.asciz	"s_"
+	.asciz	"_invalid_el"
+	.asciz	"nc"
+	.asciz	"_invalid_"
+	.asciz	"_invali"
+	.asciz	"en"
+	.asciz	"vali"
+	.asciz	"val"
+	.asciz	"e_"
+	.asciz	"_in"
+	.asciz	"d_"
+	.asciz	"__"
+	.asciz	"sy"
+	.asciz	"ge"
+	.asciz	"re"
+	.asciz	"al"
+	.asciz	"el"
+	.asciz	"er"
+	.asciz	"in"
+	.asciz	"t_"
+
+.globl kallsyms_token_index
+	ALGN
+kallsyms_token_index:
+	.short	0
+	.short	8
+	.short	14
+	.short	18
+	.short	22
+	.short	26
+	.short	29
+	.short	35
+	.short	40
+	.short	44
+	.short	52
+	.short	55
+	.short	61
+	.short	66
+	.short	69
+	.short	72
+	.short	75
+	.short	81
+	.short	86
+	.short	89
+	.short	92
+	.short	96
+	.short	101
+	.short	105
+	.short	109
+	.short	115
+	.short	119
+	.short	126
+	.short	132
+	.short	136
+	.short	143
+	.short	148
+	.short	154
+	.short	157
+	.short	167
+	.short	171
+	.short	174
+	.short	184
+	.short	193
+	.short	201
+	.short	207
+	.short	212
+	.short	217
+	.short	229
+	.short	236
+	.short	240
+	.short	249
+	.short	251
+	.short	263
+	.short	265
+	.short	267
+	.short	269
+	.short	271
+	.short	273
+	.short	275
+	.short	277
+	.short	290
+	.short	292
+	.short	294
+	.short	308
+	.short	317
+	.short	323
+	.short	329
+	.short	335
+	.short	340
+	.short	348
+	.short	350
+	.short	352
+	.short	368
+	.short	370
+	.short	372
+	.short	374
+	.short	376
+	.short	384
+	.short	389
+	.short	392
+	.short	397
+	.short	399
+	.short	402
+	.short	405
+	.short	407
+	.short	410
+	.short	413
+	.short	417
+	.short	419
+	.short	421
+	.short	428
+	.short	431
+	.short	435
+	.short	440
+	.short	454
+	.short	457
+	.short	460
+	.short	465
+	.short	469
+	.short	473
+	.short	475
+	.short	480
+	.short	482
+	.short	484
+	.short	486
+	.short	488
+	.short	490
+	.short	492
+	.short	494
+	.short	496
+	.short	498
+	.short	501
+	.short	503
+	.short	505
+	.short	507
+	.short	509
+	.short	511
+	.short	513
+	.short	515
+	.short	517
+	.short	519
+	.short	521
+	.short	523
+	.short	525
+	.short	527
+	.short	529
+	.short	531
+	.short	533
+	.short	536
+	.short	539
+	.short	544
+	.short	558
+	.short	563
+	.short	568
+	.short	575
+	.short	581
+	.short	587
+	.short	593
+	.short	604
+	.short	610
+	.short	615
+	.short	621
+	.short	626
+	.short	634
+	.short	641
+	.short	648
+	.short	655
+	.short	661
+	.short	677
+	.short	686
+	.short	691
+	.short	705
+	.short	708
+	.short	712
+	.short	717
+	.short	720
+	.short	724
+	.short	728
+	.short	732
+	.short	738
+	.short	742
+	.short	745
+	.short	748
+	.short	751
+	.short	754
+	.short	762
+	.short	765
+	.short	772
+	.short	779
+	.short	784
+	.short	789
+	.short	794
+	.short	799
+	.short	804
+	.short	817
+	.short	824
+	.short	827
+	.short	832
+	.short	837
+	.short	840
+	.short	844
+	.short	847
+	.short	851
+	.short	855
+	.short	859
+	.short	863
+	.short	866
+	.short	869
+	.short	872
+	.short	876
+	.short	883
+	.short	888
+	.short	896
+	.short	901
+	.short	907
+	.short	911
+	.short	914
+	.short	917
+	.short	920
+	.short	923
+	.short	926
+	.short	933
+	.short	947
+	.short	953
+	.short	957
+	.short	961
+	.short	964
+	.short	967
+	.short	980
+	.short	993
+	.short	998
+	.short	1002
+	.short	1006
+	.short	1009
+	.short	1012
+	.short	1016
+	.short	1021
+	.short	1033
+	.short	1040
+	.short	1046
+	.short	1051
+	.short	1054
+	.short	1058
+	.short	1061
+	.short	1064
+	.short	1068
+	.short	1071
+	.short	1074
+	.short	1079
+	.short	1083
+	.short	1088
+	.short	1091
+	.short	1094
+	.short	1097
+	.short	1101
+	.short	1104
+	.short	1107
+	.short	1110
+	.short	1113
+	.short	1116
+	.short	1119
+	.short	1122
+	.short	1134
+	.short	1137
+	.short	1147
+	.short	1155
+	.short	1158
+	.short	1163
+	.short	1167
+	.short	1170
+	.short	1174
+	.short	1177
+	.short	1180
+	.short	1183
+	.short	1186
+	.short	1189
+	.short	1192
+	.short	1195
+	.short	1198
+	.short	1201
+

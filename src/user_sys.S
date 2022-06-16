@@ -14,13 +14,13 @@ call_sys_write:
 .globl call_sys_malloc
 call_sys_malloc:
 	mov w8, #SYS_MALLOC_NUMBER	
-	svc #0
+	svc #1
 	ret
 
 .globl call_sys_exit
 call_sys_exit:
 	mov w8, #SYS_EXIT_NUMBER	
-	svc #0
+	svc #3
 	ret
 
 .globl call_sys_clone
@@ -33,7 +33,7 @@ call_sys_clone:
 	/* Do the system call.  */
 	//mov 	x0, x2					/* stack  */
 	mov	x8, #SYS_CLONE_NUMBER
-	svc	0x0
+	svc	0x2
 	ret
 	/*
 	cmp	x0, #0

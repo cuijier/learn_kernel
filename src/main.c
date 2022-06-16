@@ -18,10 +18,13 @@ void delay(int n)
 void kernel_thread(char *array)
 {
 	printf("%s enter\n",__func__);
+	disable_irq();
+	dump_backtrace(NULL, NULL);
 	unsigned long begin = (unsigned long)&user_begin;
 	unsigned long end = (unsigned long)&user_end;
 	unsigned long process = (unsigned long)&user_process;
 	int err = move_to_user_mode(begin, end - begin, process - begin);
+	//enable_irq();
 	if (err < 0){
 		printf("Error while moving process to user mode\n\r");
 	}
